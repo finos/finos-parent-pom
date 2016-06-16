@@ -68,12 +68,12 @@ under the License.
 
   <distributionManagement>
     <repository>
-      <id>ssf.releases</id>
+      <id>ossrh</id>
       <name>${distMgmtReleaseName}</name>
       <url>${distMgmtReleaseUrl}</url>
     </repository>
     <snapshotRepository>
-      <id>ssf.snapshots</id>
+      <id>ossrh</id>
       <name>${distMgmtSnapshotsName}</name>
       <url>${distMgmtSnapshotsUrl}</url>
     </snapshotRepository>
@@ -93,7 +93,6 @@ under the License.
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <gpg.useagent>true</gpg.useagent>
-    <arguments />
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
@@ -101,6 +100,11 @@ under the License.
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>downloads-maven-plugin</artifactId>
+          <version>0.6</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
@@ -201,18 +205,6 @@ under the License.
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>2.9</version>
         </plugin>
-        <!--  START SNIPPET: release-plugin-configuration  -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
-          <configuration>
-            <useReleaseProfile>false</useReleaseProfile>
-            <goals>deploy</goals>
-            <arguments>-Prelease ${arguments}</arguments>
-            <waitBeforeTagging>10</waitBeforeTagging>
-          </configuration>
-        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-remote-resources-plugin</artifactId>
@@ -261,9 +253,15 @@ under the License.
           <version>2.6</version>
         </plugin>
         <plugin>
-          <groupId>com.github.github</groupId>
-          <artifactId>downloads-maven-plugin</artifactId>
-          <version>0.6</version>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.7</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.complykit</groupId>
@@ -275,7 +273,6 @@ under the License.
           <artifactId>site-maven-plugin</artifactId>
           <version>0.12</version>
         </plugin>
-
       </plugins>
     </pluginManagement>
     <plugins>
@@ -370,6 +367,7 @@ under the License.
             <executions>
               <execution>
                 <id>sign-release-artifacts</id>
+                <phase>verify</phase>
                 <goals>
                   <goal>sign</goal>
                 </goals>
