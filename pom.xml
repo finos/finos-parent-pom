@@ -124,6 +124,10 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.5.1</version>
+          <configuration>
+  					<source>${maven.compiler.source}</source>
+  					<target>${maven.compiler.target}</target>
+  				</configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -272,6 +276,19 @@ under the License.
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
           <version>0.12</version>
+          <configuration>
+            <blacklist>
+              <param>agpl-3.0</param>
+              <param>gpl-1.0</param>
+              <param>gpl-2.0</param>
+              <param>gpl-3.0</param>
+              <param>lgpl-2.1</param>
+              <param>lgpl-3.0</param>
+              <param>qpl-1.0</param>
+              <param>sleepycat</param>
+              <param>ms-pl</param>
+            </blacklist>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -279,13 +296,6 @@ under the License.
       <plugin>
         <groupId>org.complykit</groupId>
         <artifactId>license-check-maven-plugin</artifactId>
-        <configuration>
-          <blacklist>
-            <param>agpl-3.0</param> <!--exclude affero-->
-            <param>gpl-2.0</param> <!--exclude gpl 2-->
-            <param>gpl-3.0</param> <!--exclude gpl 3-->
-          </blacklist>
-        </configuration>
         <executions>
           <execution>
             <phase>verify</phase>
@@ -295,16 +305,8 @@ under the License.
           </execution>
         </executions>
       </plugin>
-      <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-				</configuration>
-			</plugin>
       <!-- @TODO - create and release symphonyoss-jar-resource-bundle -->
-      <!-- <plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-remote-resources-plugin</artifactId>
         <executions>
@@ -315,12 +317,12 @@ under the License.
             </goals>
             <configuration>
               <resourceBundles>
-                <resourceBundle>org.symphonyoss:symphonyoss-jar-resource-bundle:1.0</resourceBundle>
+                <resourceBundle>org.symphonyoss:ssf-jar-resource-bundle:1-SNAPSHOT</resourceBundle>
               </resourceBundles>
             </configuration>
           </execution>
         </executions>
-      </plugin> -->
+      </plugin>
     </plugins>
   </build>
 
