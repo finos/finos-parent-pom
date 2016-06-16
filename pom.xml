@@ -1,0 +1,425 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed to the Symphony Software Foundation (SSF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The SSF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.symphonyoss</groupId>
+  <artifactId>symphonyoss</artifactId>
+  <version>1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>The Symphony Software Foundation</name>
+  <description>
+    Promote the adoption of Symphony Open Source Project as the preferred messaging, communications, workflow and productivity platform worldwide.
+    Host an arena of innovation focused on solving industry collaboration problems with a cooperative approach, through openness, interoperability and standardization on the Symphony Open Source Project.
+    Deliver an enterprise grade platform in terms of security and compliance produced in a community and enterprise friendly governance that fosters Open Source contributions.
+  </description>
+  <url>https://symphony.foundation</url>
+  <organization>
+    <name>The Symphony Software Foundation</name>
+    <url>https://symphony.foundation</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <mailingLists>
+    <mailingList>
+      <name>Symphony Dev List</name>
+      <subscribe>dev+subscribe@symphony.foundation</subscribe>
+      <unsubscribe>dev+unsubscribe@symphony.foundation</unsubscribe>
+      <post>dev@symphony.foundation</post>
+      <archive>https://groups.google.com/a/symphony.foundation/forum/#!forum/dev</archive>
+    </mailingList>
+  </mailingLists>
+
+  <prerequisites>
+    <maven>3.0</maven>
+  </prerequisites>
+
+  <scm>
+    <connection>scm:git:git://github.com/symphonyoss/ssf-parent-pom.git</connection>
+    <developerConnection>scm:git:git@github.com:symphonyoss/ssf-parent-pom.git</developerConnection>
+    <url>https://github.com/symphonyoss/ssf-parent-pom</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>ssf.releases</id>
+      <name>${distMgmtReleaseName}</name>
+      <url>${distMgmtReleaseUrl}</url>
+    </repository>
+    <snapshotRepository>
+      <id>ssf.snapshots</id>
+      <name>${distMgmtSnapshotsName}</name>
+      <url>${distMgmtSnapshotsUrl}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <issueManagement>
+		<url>https://github.com/symphonyoss/ssf-parent-pom/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+  <properties>
+    <distMgmtReleaseName>Symphony Foundation Release Distribution Repository</distMgmtReleaseName>
+    <distMgmtReleaseUrl>https://oss.sonatype.org/content/repositories/releases/</distMgmtReleaseUrl>
+    <distMgmtSnapshotsName>Symphony Foundation Development Snapshot Repository</distMgmtSnapshotsName>
+    <distMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</distMgmtSnapshotsUrl>
+    <organization.logo>http://symphony.foundation/images/SymphonySoftwareFoundation.png</organization.logo>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <gpg.useagent>true</gpg.useagent>
+    <arguments />
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>2.6</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.5.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.10</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-docck-plugin</artifactId>
+          <version>1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.4.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${surefire.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.6</version>
+          <configuration>
+            <gpgArguments>
+            <arg>--digest-algo=SHA512</arg>
+            </gpgArguments>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>2.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.1</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.10.4</version>
+          <executions>
+  					<execution>
+  						<goals>
+  							<goal>jar</goal>
+  						</goals>
+  					</execution>
+  				</executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>3.4</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>2.9</version>
+        </plugin>
+        <!--  START SNIPPET: release-plugin-configuration  -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+          <configuration>
+            <useReleaseProfile>false</useReleaseProfile>
+            <goals>deploy</goals>
+            <arguments>-Prelease ${arguments}</arguments>
+            <waitBeforeTagging>10</waitBeforeTagging>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-remote-resources-plugin</artifactId>
+          <version>1.5</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-plugin</artifactId>
+          <version>1.9.4</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <version>1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.0.0</version>
+          <executions>
+  					<execution>
+  						<goals>
+  							<goal>jar</goal>
+  						</goals>
+  					</execution>
+  				</executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.19.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-report-plugin</artifactId>
+          <version>2.19.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.6</version>
+        </plugin>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>downloads-maven-plugin</artifactId>
+          <version>0.6</version>
+        </plugin>
+        <plugin>
+          <groupId>org.complykit</groupId>
+          <artifactId>license-check-maven-plugin</artifactId>
+          <version>0.5.3</version>
+        </plugin>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>site-maven-plugin</artifactId>
+          <version>0.12</version>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.complykit</groupId>
+        <artifactId>license-check-maven-plugin</artifactId>
+        <configuration>
+          <blacklist>
+            <param>agpl-3.0</param> <!--exclude affero-->
+            <param>gpl-2.0</param> <!--exclude gpl 2-->
+            <param>gpl-3.0</param> <!--exclude gpl 3-->
+          </blacklist>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>os-check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+      <!-- @TODO - create and release symphonyoss-jar-resource-bundle -->
+      <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-remote-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>process-resource-bundles</id>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <configuration>
+              <resourceBundles>
+                <resourceBundle>org.symphonyoss:symphonyoss-jar-resource-bundle:1.0</resourceBundle>
+              </resourceBundles>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin> -->
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <inherited>true</inherited>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <configuration>
+              <updateReleaseInfo>true</updateReleaseInfo>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-release-artifacts</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>github-release</id>
+      <build>
+        <plugins>
+          <plugin>
+    				<groupId>com.github.github</groupId>
+    				<artifactId>downloads-maven-plugin</artifactId>
+    				<configuration>
+    					<description>Official ${project.name} build of the ${project.version} release</description>
+    					<override>true</override>
+    					<includeAttached>true</includeAttached>
+    					<server>github</server>
+    				</configuration>
+    				<executions>
+    					<execution>
+    						<goals>
+    							<goal>upload</goal>
+    						</goals>
+    						<phase>install</phase>
+    					</execution>
+    				</executions>
+    			</plugin>
+    			<plugin>
+    				<groupId>com.github.github</groupId>
+    				<artifactId>site-maven-plugin</artifactId>
+    				<configuration>
+    					<message>Building site for ${project.version}</message>
+    					<server>github</server>
+    				</configuration>
+    				<executions>
+    					<execution>
+    						<goals>
+    							<goal>site</goal>
+    						</goals>
+    						<phase>site</phase>
+    					</execution>
+    				</executions>
+    			</plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
