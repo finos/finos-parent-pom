@@ -310,9 +310,6 @@ under the License.
               </goals>
             </execution>
           </executions>
-          <configuration>
-            <projectId>5770ea4001f8e1000998d503</projectId>
-          </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
