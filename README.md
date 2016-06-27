@@ -51,7 +51,7 @@ More info on [Sonatype.org](http://central.sonatype.org/pages/apache-maven.html)
 
 This Parent Pom uses and configures the [Versioneye Maven Plugin](https://github.com/versioneye/versioneye_maven_plugin) to register and submit data to versioneye.
 
-All you need is to:
+#### Enable Versioneye integration
 1. Define a `VERSIONEYE_API_KEY=my_versioneye_api_key`; you can find the API Key in your [versioneye settings](https://www.versioneye.com/settings/api); if you use Travis CI, make sure you encrypt it using `travis encrypt VERSIONEYE_API_KEY=my_versioneye_api_key` and then pushing the `secure` token in your `.travis.yml` (check this [.travis.yml](.travis.yml) as example)
 2. Add `versioneye` profile to your Maven command: `mvn clean verify -Pversioneye`; please note that the Maven will run versioneye during the `verify` phase (that is after package), therefore `mvn clean package -Pversioneye` won't work!
 
@@ -69,6 +69,7 @@ This Parent Pom uses and configures the [Sonar Maven Plugin](http://sonarsource.
 [Travis CI](https://travis-ci.org) is a hosted, distributed continuous integration service used to build and test software projects hosted at GitHub.
 
 The Foundation Parent Pom doesn't have (yet) any dependency or integration with Travis CI; to enable CI on a Foundation project:
+
 1. Drop a `.travis.yml` file in the root folder of your github repo (check this [.travis.yml](.travis.yml) as sample)
 2. Register (using your Github account) on Travis CI and [access your profile](https://travis-ci.org/profile) to enable (switch on) the github repository of your choice
 
