@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
@@ -268,6 +267,11 @@ under the License.
           </configuration>
         </plugin>
         <plugin>
+            <groupId>com.versioneye</groupId>
+            <artifactId>versioneye-maven-plugin</artifactId>
+            <version>3.9.2</version>
+        </plugin>
+        <plugin>
           <groupId>org.complykit</groupId>
           <artifactId>license-check-maven-plugin</artifactId>
           <version>0.5.3</version>
@@ -294,18 +298,19 @@ under the License.
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.complykit</groupId>
-        <artifactId>license-check-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>verify</phase>
-            <goals>
-              <goal>os-check</goal>
-            </goals>
-          </execution>
-        </executions>
+          <groupId>com.versioneye</groupId>
+          <artifactId>versioneye-maven-plugin</artifactId>
+          <version>3.9.2</version>
+          <executions>
+            <execution>
+              <phase>verify</phase>
+              <goals>
+                <goal>update</goal>
+                <goal>securityAndLicenseCheck</goal>
+              </goals>
+            </execution>
+          </executions>
       </plugin>
-      <!-- @TODO - create and release symphonyoss-jar-resource-bundle -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-remote-resources-plugin</artifactId>
