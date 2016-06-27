@@ -1,4 +1,3 @@
-
 [![Dependencies](https://www.versioneye.com/user/projects/5770ea4001f8e1000998d503/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5770ea4001f8e1000998d503)
 [![Build Status](https://travis-ci.org/symphonyoss/ssf-parent-pom.svg)](https://travis-ci.org/symphonyoss/ssf-parent-pom)
 
@@ -16,30 +15,46 @@ Simply define the following `<parent>` in your `pom.xml`:
 ```
 
 ## Features
-- Freeze most common Maven plugin versions using pluginManagement
-- Blacklist incompatible licenses of transitive Maven dependencies
-- Publish released artifacts on Github download page
-- Publish Maven site on Github Wiki
-- Publish snapshot (aka nightly builds) and released artifacts on Maven Central (search.maven.org)
+- Plugin Management for the most common Maven functionalities
+- Simple artifact deployment and release on Maven Central and Github (`releases` project page)
+- Site (documentation) generation on Github Wiki (WIP)
+- versioneye.com integration for security and licensing validation
+- sonarqube.com integration for code analytics
+- scan.coverity.com integration for security validation
 
-## Maven Central Deployment configuration
-In order to publish artifacts on Maven Central, it is necessary to [sign up on Sonatype OSS](http://central.sonatype.org/pages/ossrh-guide.html) and [configure your workstation](http://central.sonatype.org/pages/apache-maven.html).
+### Plugin Management
+- `build/pluginManagement/plugins` lists all plugins and sets their latest versions; versions will need to be kept up to date
+- `maven-compiler-plugin` sets `source` and `target` compiler JDK version to `1.8`; you can override it by setting the following properties
+```
+<maven.compiler.source>1.7</maven.compiler.source>
+<maven.compiler.target>1.7</maven.compiler.target>
+```
+- `maven-javadoc-plugin` generates Javadoc JAR (which gets deployed and released along with other artifacts) during each JAR project build
+- `maven-remote-resources-plugin` includes the contents of [ssf-jar-resource-bundle](https://github.com/symphonyoss/ssf-jar-resource-bundle) (mostly licensing-related files) in each artifact that gets built
+- `maven-source-plugin` generates a JAR with the source code (which gets deployed and released along with other artifacts) during each JAR project build
+- `nexus-staging-maven-plugin` enables the deployment and release process against [Sonatype OSS Repository](https://oss.sonatype.org) (which is synced with Maven Central)
 
-We strongly advise to [encrypt your Maven passwords](https://maven.apache.org/guides/mini/guide-encryption.html)
+### Artifact deployment and release
+Before trying, make sure you read the [setup instructions](#Workstation setup)
 
-## Github plugins configuration
-To enable github publishing features (downloads and site), you must enable the profile `-Pgithub-release`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins)
-
-## Maven deployment/release
-
-### Requirements
-- Install GnuPG; on OSX it is available on Homebrew with `brew install gnupg gnupg2`
-- Configure sonatypeoss.org and github.com authentications as explained above
-
-### Deploy
+#### Deploy
 To deploy a nightly build run `mvn clean deploy`
 To reject last nightly built deployment run `mvn nexus-staging:drop`
 
-### Release
+#### Release
 To promote the latest deployment to a release run `mvn nexus-staging:release`
 More info on [Sonatype.org](http://central.sonatype.org/pages/apache-maven.html)
+
+## Workstation setup
+
+### Maven deploy/release
+
+In order to publish (Symphony Foundation) artifacts, it is necessary to [sign in Sonatype OSS](https://issues.sonatype.org/secure/Signup!default.jspa) and [configure your workstation](http://central.sonatype.org/pages/apache-maven.html#distribution-management-and-authentication) (only the settings.xml part); we strongly advise to [encrypt your Maven passwords](https://maven.apache.org/guides/mini/guide-encryption.html).
+
+You also need to install [GnuPG](https://www.gnupg.org); on OSX it is available on Homebrew with `brew install gnupg gnupg2`.
+
+Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.symphonyoss` groupId.
+
+### Github plugins configuration
+To enable github publishing features (releases and documentation site), you must enable the profile `-Pgithub-release`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins)
+_This is work in progress; it needs testing_
