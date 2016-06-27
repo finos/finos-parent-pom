@@ -426,5 +426,20 @@ under the License.
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>sonar</id>
+      <properties>
+        <sonar.host.url>https://sonarqube.com</sonar.host.url>
+      </properties>
+      <build>
+          <plugins>
+              <plugin>
+                  <groupId>org.sonarsource.scanner.maven</groupId>
+                  <artifactId>sonar-maven-plugin</artifactId>
+                  <version>3.0.2</version>
+              </plugin>
+          </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
