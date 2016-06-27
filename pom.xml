@@ -64,6 +64,18 @@ under the License.
     <url>https://github.com/symphonyoss/ssf-parent-pom</url>
   </scm>
 
+  <!-- Temporary until the ssf-enforcer-rules dependency is released on Maven Central -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>ossrh</id>
+      <name>OSSRH Public Group</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
   <distributionManagement>
     <repository>
       <id>ossrh</id>
@@ -151,6 +163,13 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>1.4.1</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.symphonyoss</groupId>
+              <artifactId>ssf-enforcer-rules</artifactId>
+              <version>1.0-SNAPSHOT</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -300,6 +319,27 @@ under the License.
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <configuration>
+          <rules>
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.GroupIdRule">
+              <groupIdPrefix>org.symphonyoss</groupIdPrefix>
+            </myCustomRule>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>

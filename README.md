@@ -18,6 +18,7 @@ Simply define the following `<parent>` in your `pom.xml`:
 - **Plugin Management** for the most common Maven functionalities
 - **Simple artifact deployment and release** on Maven Central and Github (`releases` project page)
 - **Site (documentation) generation** on Github Wiki (WIP)
+- **Enforcing rules** to validate the Foundation code acceptance criteria
 - **versioneye.com integration** for security and licensing validation
 - **sonarqube.com integration** for code analytics
 - **Travis CI** integration for Continuous Integration
@@ -45,6 +46,14 @@ To reject last nightly built deployment run `mvn nexus-staging:drop`
 #### Release
 To promote the latest deployment to a release run `mvn nexus-staging:release`
 More info on [Sonatype.org](http://central.sonatype.org/pages/apache-maven.html)
+
+### Enforcing rules
+The current rules currently defined are:
+
+1. Use Maven 3.0 or greater
+2. Define a groupId that starts with `org.symphonyoss` or `org.symphonyoss.`
+
+The Foundation rules are implemented as Maven Enforcer custom rules and the [source code is available on GitHub](https://github.com/symphonyoss/ssf-enforcer-rules); more rules will be added in the future.
 
 ### versioneye.com Integration
 [versioneye.com](http://versioneye.com) notifies you about out-dated dependencies, security vulnerabilities and license violations in your Git repositories.
