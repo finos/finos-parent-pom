@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/symphonyoss/ssf-parent-pom.svg)](https://travis-ci.org/symphonyoss/ssf-parent-pom)
 
 # Symphony Software Foundation Parent POM
-This Maven POM aims to provide common functionalities to Maven projects hosted by the Symphony Software Foundation.
+This Maven POM aims to provide **_common functionalities to Maven projects_** hosted by the Symphony Software Foundation.
 
 ## Usage
 Simply define the following `<parent>` in your `pom.xml`:
@@ -15,12 +15,13 @@ Simply define the following `<parent>` in your `pom.xml`:
 ```
 
 ## Features
-- Plugin Management for the most common Maven functionalities
-- Simple artifact deployment and release on Maven Central and Github (`releases` project page)
-- Site (documentation) generation on Github Wiki (WIP)
-- versioneye.com integration for security and licensing validation
-- sonarqube.com integration for code analytics
-- scan.coverity.com integration for security validation
+- **Plugin Management** for the most common Maven functionalities
+- **Simple artifact deployment and release** on Maven Central and Github (`releases` project page)
+- **Site (documentation) generation** on Github Wiki (WIP)
+- **versioneye.com integration** for security and licensing validation
+- **sonarqube.com integration** for code analytics
+- **Travis CI** integration for Continuous Integration
+- **scan.coverity.com** integration for security validation
 
 ### Plugin Management
 - `build/pluginManagement/plugins` lists all plugins and sets their latest versions; versions will need to be kept up to date
@@ -45,7 +46,47 @@ To reject last nightly built deployment run `mvn nexus-staging:drop`
 To promote the latest deployment to a release run `mvn nexus-staging:release`
 More info on [Sonatype.org](http://central.sonatype.org/pages/apache-maven.html)
 
+### versioneye.com Integration
+[versioneye.com](http://versioneye.com) notifies you about out-dated dependencies, security vulnerabilities and license violations in your Git repositories.
+
+This Parent Pom uses and configures the [Versioneye Maven Plugin](https://github.com/versioneye/versioneye_maven_plugin) to register and submit data to versioneye.
+
+All you need is to:
+1. Define a `VERSIONEYE_API_KEY=my_versioneye_api_key`; you can find the API Key in your [versioneye settings](https://www.versioneye.com/settings/api); if you use Travis CI, make sure you encrypt it using `travis encrypt VERSIONEYE_API_KEY=my_versioneye_api_key` and then pushing the `secure` token in your `.travis.yml` (check this [.travis.yml](.travis.yml) as example)
+2. Add `versioneye` profile to your Maven command: `mvn clean verify -Pversioneye`; please note that the Maven will run versioneye during the `verify` phase (that is after package), therefore `mvn clean package -Pversioneye` won't work!
+
+### sonarqube.com Integration
+The [SonarQube®](https://sonarqube.com/) platform is an open source quality management platform, dedicated to continuously analyzing and measuring the technical quality of source code, from project portfolio down to the method level, and tracking the introduction of new Bugs, Vulnerabilities, and Code Smells in the Leak Period.
+
+This Parent Pom uses and configures the [Sonar Maven Plugin](http://sonarsource.github.io/sonar-maven/) to submit data to SonarQube.
+
+#### Enable SonarQube integration
+1. Request an invitation (send email to `nemo AT sonarsource.com`) to Sonarqube.com for the project, mentioning that the project belongs to the Symphony Software Foundation
+2. Define a `SONAR_LOGIN=my_sonarqube_token`; you can find the token in your [Sonar security settings](https://sonarqube.com/account/security); as above, make sure to encrypt the variable if you're using Travis CI: `travis encrypt SONAR_LOGIN=my_sonar_token`
+3. Add `sonar` profile to your Maven command: `mvn clean package -Psonar`; the Sonar Plugin will run right after the `package` Maven phase is invoked
+
+### Travis CI Integration
+[Travis CI](https://travis-ci.org) is a hosted, distributed continuous integration service used to build and test software projects hosted at GitHub.
+
+The Foundation Parent Pom doesn't have (yet) any dependency or integration with Travis CI; to enable CI on a Foundation project:
+1. Drop a `.travis.yml` file in the root folder of your github repo (check this [.travis.yml](.travis.yml) as sample)
+2. Register (using your Github account) on Travis CI and [access your profile](https://travis-ci.org/profile) to enable (switch on) the github repository of your choice
+
+### scan.coverity.com Integration
+[Coverity Scan](https://scan.coverity.com/) Static Analysis is used to find and fix defects in your Java, C/C++, C# or JavaScript open source project for free.
+
+The Foundation Parent Pom doesn't have (yet) any dependency or integration with Coverity Scan; it's very simple to enable it [using .travis.yml](https://scan.coverity.com/travis_ci)
+
+#### Enable Coverity Scan integration
+1. Sign in [Coverity Scan](https://scan.coverity.com/dashboard) using Github
+2. [Add a project](https://scan.coverity.com/projects)
+3. Define a `COVERITY_SCAN_TOKEN=coverity_project_token`; you can find the token in the Coverity `Project Settings` page; as above, make sure to encrypt the variable if you're using Travis CI: `travis encrypt COVERITY_SCAN_TOKEN=coverity_project_token`
+
 ## Workstation setup
+
+### Travis
+
+To launch the `travis` command locally, you must install the gem first: `gem install travis`
 
 ### Maven deploy/release
 
