@@ -235,19 +235,11 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-remote-resources-plugin</artifactId>
           <version>1.5</version>
-          <executions>
-            <execution>
-              <id>process-resource-bundles</id>
-              <goals>
-                <goal>process</goal>
-              </goals>
-              <configuration>
-                <resourceBundles>
-                  <resourceBundle>org.symphonyoss:ssf-jar-resource-bundle:1-SNAPSHOT</resourceBundle>
-                </resourceBundles>
-              </configuration>
-            </execution>
-          </executions>
+          <configuration>
+            <resourceBundles>
+              <resourceBundle>org.symphonyoss:ssf-jar-resource-bundle:1-SNAPSHOT</resourceBundle>
+            </resourceBundles>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -320,6 +312,18 @@ under the License.
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-remote-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>process-resource-bundles</id>
+            <goals>
+              <goal>process</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
