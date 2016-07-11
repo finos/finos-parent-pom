@@ -76,6 +76,18 @@ under the License.
     </pluginRepository>
   </pluginRepositories>
 
+  <!-- Temporary until the ssf-jar-resource-bundle dependency is released on Maven Central -->
+  <repositories>
+    <repository>
+      <id>ossrh</id>
+      <name>OSSRH Public Group</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  
   <distributionManagement>
     <repository>
       <id>ossrh</id>
