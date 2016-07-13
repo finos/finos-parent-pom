@@ -344,11 +344,19 @@ under the License.
             <myCustomRule implementation="org.symphonyoss.maven.enforcer.GroupIdRule">
               <groupIdPrefix>org.symphonyoss</groupIdPrefix>
             </myCustomRule>
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.FileInJarRule">
+              <fileName>NOTICE</fileName>
+              <match>The Symphony Software Foundation (http://symphony.foundation)</match>
+            </myCustomRule>
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.FileInJarRule">
+              <fileName>LICENSE</fileName>
+              <match>Copyright 2016 The Symphony Software Foundation</match>
+            </myCustomRule>
           </rules>
         </configuration>
         <executions>
           <execution>
-            <phase>validate</phase>
+            <phase>verify</phase>
             <goals>
               <goal>enforce</goal>
             </goals>
