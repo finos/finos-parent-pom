@@ -102,7 +102,7 @@ To launch the `travis` command locally, you must install the gem first: `gem ins
 
 In order to publish (Symphony Foundation) artifacts, it is necessary to [sign in Sonatype OSS](https://issues.sonatype.org/secure/Signup!default.jspa) and [configure your workstation](http://central.sonatype.org/pages/apache-maven.html#distribution-management-and-authentication) (only the settings.xml part); we strongly advise to [encrypt your Maven passwords](https://maven.apache.org/guides/mini/guide-encryption.html).
 
-You also need to install [GnuPG](https://www.gnupg.org); on OSX it is available on Homebrew with `brew install gnupg gnupg2`.
+You also need to install [GnuPG](https://www.gnupg.org); on OSX it is available on Homebrew with `brew install gnupg gnupg2`, although some issues were encountered using the GPG Maven Plugin. You can run `gpg2 -q --sign` to check your installation and validate your passphrase.
 
 Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.symphonyoss` groupId.
 
@@ -118,12 +118,12 @@ Simply run
 ```
 mvn clean deploy
 ```
+This command will deploy the artifacts on [Sonatype OSS Snapshot Repository](https://oss.sonatype.org/content/repositories/snapshots/org/symphonyoss/)
 
 ### Release Deployment
 ```
-mvn versions:set -DnewVersion=x.y.z
-mvn clean deploy -Prelease -Dgpg.passphrase=your_passphrase
+mvn clean release:prepare release:perform -Dgpg.passphrase=your_passphrase
 ```
-Where
-- `x.y.z` is the version of the artifact to be released
-- `your_passphrase` is the passphrase of your GPG key; please refer to `gpg2` to check your keys;  simply type `gpg2 -q --sign` to validate your passphrase
+This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day.
+
+`your_passphrase` is the passphrase of your GPG key; please refer to `gpg2` to check your keys;  simply type `gpg2 -q --sign` to validate your passphrase
