@@ -91,7 +91,7 @@ under the License.
 
   <distributionManagement>
     <repository>
-      <id>ossrh</id>
+      <id>ossrh-distro</id>
       <name>${distMgmtReleaseName}</name>
       <url>${distMgmtReleaseUrl}</url>
     </repository>
