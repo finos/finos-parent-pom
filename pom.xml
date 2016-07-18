@@ -23,7 +23,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.symphonyoss</groupId>
   <artifactId>symphonyoss</artifactId>
-  <version>1-SNAPSHOT</version>
+  <version>1</version>
   <packaging>pom</packaging>
 
   <name>The Symphony Software Foundation</name>
@@ -87,7 +87,7 @@ under the License.
       </snapshots>
     </repository>
   </repositories>
-  
+
   <distributionManagement>
     <repository>
       <id>ossrh</id>
@@ -108,7 +108,7 @@ under the License.
 
   <properties>
     <distMgmtReleaseName>Symphony Foundation Release Distribution Repository</distMgmtReleaseName>
-    <distMgmtReleaseUrl>https://oss.sonatype.org/content/repositories/releases/</distMgmtReleaseUrl>
+    <distMgmtReleaseUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
     <distMgmtSnapshotsName>Symphony Foundation Development Snapshot Repository</distMgmtSnapshotsName>
     <distMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</distMgmtSnapshotsUrl>
     <organization.logo>http://symphony.foundation/images/SymphonySoftwareFoundation.png</organization.logo>
