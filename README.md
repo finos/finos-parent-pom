@@ -109,3 +109,21 @@ Before proceeding, please open a `TASK` issue on our INFRA Jira project, attachi
 ### Github plugins configuration
 To enable github publishing features (releases and documentation site), you must enable the profile `-Pgithub-release`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins)
 _This is work in progress; it needs testing_
+
+## Artifact Deployment
+
+### Snapshot Deployment
+
+Simply run
+```
+mvn clean deploy
+```
+
+### Release Deployment
+```
+mvn versions:set -DnewVersion=x.y.z
+mvn clean deploy -Prelease -Dgpg.passphrase=your_passphrase
+```
+Where
+- `x.y.z` is the version of the artifact to be released
+- `your_passphrase` is the passphrase of your GPG key; please refer to `gpg2` to check your keys;  simply type `gpg2 -q --sign` to validate your passphrase
