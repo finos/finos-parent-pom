@@ -23,7 +23,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.symphonyoss</groupId>
   <artifactId>symphonyoss</artifactId>
-  <version>1</version>
+  <version>1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>The Symphony Software Foundation</name>
@@ -62,7 +62,6 @@ under the License.
     <connection>scm:git:git://github.com/symphonyoss/ssf-parent-pom.git</connection>
     <developerConnection>scm:git:git@github.com:symphonyoss/ssf-parent-pom.git</developerConnection>
     <url>https://github.com/symphonyoss/ssf-parent-pom</url>
-    <tag>symphonyoss-1</tag>
   </scm>
 
   <!-- Temporary until the ssf-enforcer-rules dependency is released on Maven Central -->
