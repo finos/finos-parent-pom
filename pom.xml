@@ -23,7 +23,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.symphonyoss</groupId>
   <artifactId>symphonyoss</artifactId>
-  <version>2-SNAPSHOT</version>
+  <version>1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>The Symphony Software Foundation</name>
@@ -37,6 +37,23 @@ under the License.
     <name>The Symphony Software Foundation</name>
     <url>https://symphony.foundation</url>
   </organization>
+
+  <developers>
+    <developer>
+        <id>maoo</id>
+        <name>Maurizio Pillitu</name>
+        <email>maoo@symphony.foundation</email>
+        <url>http://github.com/maoo</url>
+        <organization>Symphony Software Foundation</organization>
+        <organizationUrl>http://symphony.foundation</organizationUrl>
+        <timezone>+1</timezone>
+        <roles>
+            <role>Architect</role>
+            <role>Developer</role>
+        </roles>
+    </developer>
+  </developers>
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
