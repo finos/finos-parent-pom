@@ -197,7 +197,7 @@ under the License.
             <dependency>
               <groupId>org.symphonyoss</groupId>
               <artifactId>ssf-enforcer-rules</artifactId>
-              <version>1.0-SNAPSHOT</version>
+              <version>0.9.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -278,7 +278,7 @@ under the License.
           <version>1.5</version>
           <configuration>
             <resourceBundles>
-              <resourceBundle>org.symphonyoss:ssf-jar-resource-bundle:1-SNAPSHOT</resourceBundle>
+              <resourceBundle>org.symphonyoss:ssf-jar-resource-bundle:1</resourceBundle>
             </resourceBundles>
           </configuration>
         </plugin>
@@ -359,17 +359,18 @@ under the License.
         <artifactId>maven-enforcer-plugin</artifactId>
         <configuration>
           <rules>
-            <myCustomRule implementation="org.symphonyoss.maven.enforcer.GroupIdRule">
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.RequireGroupIdRule">
               <groupIdPrefix>org.symphonyoss</groupIdPrefix>
             </myCustomRule>
-            <myCustomRule implementation="org.symphonyoss.maven.enforcer.FileInJarRule">
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.RequireFileInArtifactRule">
               <fileName>NOTICE</fileName>
               <match>The Symphony Software Foundation (http://symphony.foundation)</match>
             </myCustomRule>
-            <myCustomRule implementation="org.symphonyoss.maven.enforcer.FileInJarRule">
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.RequireFileInArtifactRule">
               <fileName>LICENSE</fileName>
               <match>Copyright 2016 The Symphony Software Foundation</match>
             </myCustomRule>
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.RequirePomMetadataRule"/>
           </rules>
         </configuration>
         <executions>
