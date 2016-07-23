@@ -23,7 +23,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.symphonyoss</groupId>
   <artifactId>symphonyoss</artifactId>
-  <version>2-SNAPSHOT</version>
+  <version>2</version>
   <packaging>pom</packaging>
 
   <name>The Symphony Software Foundation</name>
@@ -79,7 +79,7 @@ under the License.
     <connection>scm:git:git://github.com/symphonyoss/ssf-parent-pom.git</connection>
     <developerConnection>scm:git:git@github.com:symphonyoss/ssf-parent-pom.git</developerConnection>
     <url>https://github.com/symphonyoss/ssf-parent-pom</url>
-    <tag>HEAD</tag>
+    <tag>symphonyoss-2</tag>
   </scm>
 
   <!-- Temporary until the ssf-enforcer-rules dependency is released on Maven Central -->
@@ -370,7 +370,7 @@ under the License.
               <fileName>LICENSE</fileName>
               <match>Copyright 2016 The Symphony Software Foundation</match>
             </myCustomRule>
-            <myCustomRule implementation="org.symphonyoss.maven.enforcer.RequirePomMetadataRule"/>
+            <myCustomRule implementation="org.symphonyoss.maven.enforcer.RequirePomMetadataRule" />
           </rules>
         </configuration>
         <executions>
