@@ -128,3 +128,5 @@ mvn clean release:prepare release:perform -Dgpg.passphrase=your_passphrase
 This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day.
 
 `your_passphrase` is the passphrase of your GPG key; please refer to `gpg2` to check your keys;  simply type `gpg2 -q --sign` to validate your passphrase
+
+Please note that all the Maven logic related with a release is wrapped into a `release` profile, which is used by the `maven-release-plugin` when using `release:perform` goal.
