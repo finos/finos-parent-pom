@@ -11,7 +11,7 @@ Simply define the following `<parent>` in your `pom.xml`:
 <parent>
   <groupId>org.symphonyoss</groupId>
   <artifactId>symphonyoss</artifactId>
-  <version>1-SNAPSHOT</version>
+  <version>2</version>
 </parent>
 ```
 
