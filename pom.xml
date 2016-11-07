@@ -245,6 +245,9 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.10.4</version>
+          <configuration>
+            <failOnError>false</failOnError>
+          </configuration>
           <executions>
   					<execution>
   						<goals>
