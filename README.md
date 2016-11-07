@@ -108,8 +108,7 @@ You also need to install [GnuPG](https://www.gnupg.org); on OSX it is available 
 Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.symphonyoss` groupId.
 
 ### Github plugins configuration
-To enable github publishing features (releases and documentation site), you must enable the profile `-Pgithub-release`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins)
-_This is work in progress; it needs testing_
+To enable documentation publishing into github pages, you must enable the profile `-Pgithub-release`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins); bare in mind that `<github.global.server>github</github.global.server>` is already defined in this Parent Pom, but you can override it in your own pom, if you like
 
 ## Artifact Deployment
 
@@ -121,11 +120,16 @@ mvn clean deploy
 ```
 This command will deploy the artifacts on [Sonatype OSS Snapshot Repository](https://oss.sonatype.org/content/repositories/snapshots/org/symphonyoss/)
 
+If you want to deploy site documentation, you can run
+```
+mvn site -Pgithub-release
+```
+
 ### Release Deployment
 ```
 mvn clean release:prepare release:perform -Dgpg.passphrase=your_passphrase
 ```
-This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day.
+This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day; the goals invoked during the `release:perform` phase are defined by `<release.goals>` property and is set by default to `deploy`.
 
 `your_passphrase` is the passphrase of your GPG key; please refer to `gpg2` to check your keys;  simply type `gpg2 -q --sign` to validate your passphrase
 

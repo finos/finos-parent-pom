@@ -129,12 +129,14 @@ under the License.
     <distMgmtReleaseUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
     <distMgmtSnapshotsName>Symphony Foundation Development Snapshot Repository</distMgmtSnapshotsName>
     <distMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</distMgmtSnapshotsUrl>
+    <release.goals>deploy</release.goals>
     <organization.logo>http://symphony.foundation/images/SymphonySoftwareFoundation.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <gpg.useagent>true</gpg.useagent>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <github.global.server>github</github.global.server>
   </properties>
 
   <build>
@@ -269,7 +271,7 @@ under the License.
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
-            <goals>deploy</goals>
+            <goals>${release.goals}</goals>
           </configuration>
         </plugin>
         <plugin>
@@ -443,30 +445,11 @@ under the License.
       <id>github-release</id>
       <build>
         <plugins>
-          <plugin>
-    				<groupId>com.github.github</groupId>
-    				<artifactId>downloads-maven-plugin</artifactId>
-    				<configuration>
-    					<description>Official ${project.name} build of the ${project.version} release</description>
-    					<override>true</override>
-    					<includeAttached>true</includeAttached>
-    					<server>github</server>
-    				</configuration>
-    				<executions>
-    					<execution>
-    						<goals>
-    							<goal>upload</goal>
-    						</goals>
-    						<phase>install</phase>
-    					</execution>
-    				</executions>
-    			</plugin>
     			<plugin>
     				<groupId>com.github.github</groupId>
     				<artifactId>site-maven-plugin</artifactId>
     				<configuration>
     					<message>Building site for ${project.version}</message>
-    					<server>github</server>
     				</configuration>
     				<executions>
     					<execution>
