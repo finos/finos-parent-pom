@@ -5,6 +5,25 @@
 # Symphony Software Foundation Parent POM
 This Maven POM aims to provide **_common functionalities to Maven projects_** hosted by the Symphony Software Foundation.
 
+* [Usage](#usage)
+* [Features](#features)
+  * [Plugin Management](#plugin-management)
+  * [Enforcing rules](#enforcing-rules)
+  * [versioneye\.com Integration](#versioneyecom-integration)
+    * [Enable Versioneye integration](#enable-versioneye-integration)
+  * [sonarqube\.com Integration](#sonarqubecom-integration)
+    * [Enable SonarQube integration](#enable-sonarqube-integration)
+  * [Travis CI Integration](#travis-ci-integration)
+  * [scan\.coverity\.com Integration](#scancoveritycom-integration)
+    * [Enable Coverity Scan integration](#enable-coverity-scan-integration)
+* [Workstation setup](#workstation-setup)
+  * [Travis](#travis)
+  * [Maven deploy/release](#maven-deployrelease)
+  * [Github plugins configuration](#github-plugins-configuration)
+* [Artifact Deployment](#artifact-deployment)
+  * [Snapshot Deployment](#snapshot-deployment)
+  * [Release Deployment](#release-deployment)
+
 ## Usage
 Simply define the following `<parent>` in your `pom.xml`:
 ```
