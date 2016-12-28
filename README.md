@@ -37,17 +37,6 @@ Simply define the following `<parent>` in your `pom.xml`:
 - `maven-source-plugin` generates a JAR with the source code (which gets deployed and released along with other artifacts) during each JAR project build
 - `nexus-staging-maven-plugin` enables the deployment and release process against [Sonatype OSS Repository](https://oss.sonatype.org) (which is synced with Maven Central)
 
-### Artifact deployment and release
-Before trying, make sure you read the [setup instructions](#Workstation setup)
-
-#### Deploy
-To deploy a nightly build run `mvn clean deploy`
-To reject last nightly built deployment run `mvn nexus-staging:drop`
-
-#### Release
-To promote the latest deployment to a release run `mvn nexus-staging:release`
-More info on [Sonatype.org](http://central.sonatype.org/pages/apache-maven.html)
-
 ### Enforcing rules
 The current rules currently defined are:
 
