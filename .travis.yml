@@ -22,7 +22,8 @@
 language: java
 # To enable Sonar
 # script: mvn clean install -P versioneye,sonar
-script: mvn clean install -P versioneye
+script: mvn clean deploy -Pversioneye --settings settings.xml
+
 jdk:
   - oraclejdk8
 
