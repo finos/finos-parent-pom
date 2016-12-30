@@ -116,7 +116,7 @@ You also need to install [GnuPG](https://www.gnupg.org); on OSX it is available 
 Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.symphonyoss` groupId.
 
 ### Github plugins configuration
-To enable documentation publishing into github pages, you must enable the profile `-Pgithub-release`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins); bare in mind that `<github.global.server>github</github.global.server>` is already defined in this Parent Pom, but you can override it in your own pom, if you like
+To enable documentation publishing into github pages, you must enable the profile `-Ppublish-site`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins); bare in mind that `<github.global.server>github</github.global.server>` is already defined in this Parent Pom, but you can override it in your own pom, if you like
 
 ## Artifact Deployment
 
@@ -130,7 +130,7 @@ This command will deploy the artifacts on [Sonatype OSS Snapshot Repository](htt
 
 If you want to deploy site documentation, you can run
 ```
-mvn site -Pgithub-release
+mvn site -Ppublish-site
 ```
 
 ### Release Deployment
