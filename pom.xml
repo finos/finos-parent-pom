@@ -460,7 +460,7 @@ under the License.
       <id>sonar</id>
       <properties>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.login>${env.SONAR_LOGIN}</sonar.login>
+        <sonar.login>${env.SONAR_TOKEN}</sonar.login>
         <sonar.organization>symphonyoss</sonar.organization>
       </properties>
       <build>

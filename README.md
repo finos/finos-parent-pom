@@ -80,7 +80,7 @@ This Parent Pom uses and configures the [Sonar Maven Plugin](http://sonarsource.
 
 #### Enable SonarQube integration
 1. Request an invitation (send email to `nemo AT sonarsource.com`) to Sonarqube.com for the project, mentioning that the project belongs to the Symphony Software Foundation
-2. Define a `SONAR_LOGIN=my_sonarqube_token`; you can find the token in your [Sonar security settings](https://sonarqube.com/account/security); as above, make sure to encrypt the variable if you're using Travis CI: `travis encrypt SONAR_LOGIN=my_sonar_token`
+2. Define a `SONAR_TOKEN=my_sonarqube_token`; you can find the token in your [Sonar security settings](https://sonarqube.com/account/security); as above, make sure to encrypt the variable if you're using Travis CI: `travis encrypt SONAR_TOKEN=my_sonar_token`
 3. Add `sonar` profile to your Maven command: `mvn clean package -Psonar`; the Sonar Plugin will run right after the `package` Maven phase is invoked
 
 ### Travis CI Integration
