@@ -19,6 +19,12 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+
+# Only build (and deploy) the master branch
+branches:
+  only:
+  - master
+
 language: java
 # To enable Sonar
 # script: mvn clean install -P versioneye,sonar
