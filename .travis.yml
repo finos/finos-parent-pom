@@ -47,5 +47,3 @@ cache:
 addons:
   sonarqube:
     organization: "symphonyoss"
-    token:
-      secure: "$SONAR_LOGIN"
