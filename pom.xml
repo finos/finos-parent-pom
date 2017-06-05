@@ -26,15 +26,11 @@ under the License.
   <version>4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>The Symphony Software Foundation</name>
-  <description>
-    Promote the adoption of Symphony Open Source Project as the preferred messaging, communications, workflow and productivity platform worldwide.
-    Host an arena of innovation focused on solving industry collaboration problems with a cooperative approach, through openness, interoperability and standardization on the Symphony Open Source Project.
-    Deliver an enterprise grade platform in terms of security and compliance produced in a community and enterprise friendly governance that fosters Open Source contributions.
-  </description>
+  <name>The Symphony Software Foundation Parent POM</name>
+  <description>Delivers code automation for projects hosted by the Symphony Software Foundation that build with Apache Maven</description>
   <url>https://symphony.foundation</url>
   <organization>
-    <name>The Symphony Software Foundation</name>
+    <name>Symphony Software Foundation</name>
     <url>https://symphony.foundation</url>
   </organization>
 
@@ -325,7 +321,7 @@ under the License.
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.3.0.603</version>
         </plugin>
         <plugin>
           <groupId>com.versioneye</groupId>
@@ -463,8 +459,9 @@ under the License.
     <profile>
       <id>sonar</id>
       <properties>
-        <sonar.host.url>https://sonarqube.com</sonar.host.url>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.login>${env.SONAR_LOGIN}</sonar.login>
+        <sonar.organization>symphonyoss</sonar.organization>
       </properties>
       <build>
           <plugins>
