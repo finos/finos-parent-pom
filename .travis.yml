@@ -19,16 +19,11 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-
-# Only build (and deploy) the master branch
-branches:
-  only:
-  - master
-
 language: java
-# To enable Sonar
-# script: mvn clean install -P versioneye,sonar
-script: mvn clean deploy -Pversioneye --settings settings.xml
+
+script: 
+  - "if [[ $TRAVIS_BRANCH =~ master && \"$TRAVIS_PULL_REQUEST\" = \"false\" ]]; then mvn clean deploy -Pversioneye --settings settings.xml ; else mvn clean install ; fi"
+  - sonar-scanner
 
 jdk:
   - oraclejdk8
@@ -39,3 +34,13 @@ env:
    # To enable Sonar, Generate a secure using command "travis encrypt SONAR_LOGIN=blah"
    # Generated using command "travis encrypt VERSIONEYE_API_KEY=blah"
    - secure: "PeKOd8DWCT8d7zLQKyB86gt2qz0qpiSAujUa2hUyNFajSOv6iZZ9Zn0QUAb6ZqBavCC6ytIdxSFxWYLlTo48joJ++2qimfvX2Xwz/vO4n1qA1k/gwl3BBrMN9FX0wnE2WKt1fEOQgMDaPnoYqezPSGPbKB/f4ph4siW6ory4evFNNd9yWm8Y39v6C7cPxQXiGP8NdhfNfH5Fqdlz3pEa+tv128SyCHaGdL3qt0ghfMVxQ8lMSMihKi7PM0nn6s5R6/YGOUoCSSFT52l0/Zy14PW91Rn2AF3CN24ywll9OES2OefgDIzWCJ1v5cHWBbW4JQJkb4LVAnf/EoLYKe3MFX43T7JVa3a6uLjn+8/VcsDYVy0Lv6L0B/F1gf3dTcUipYNQXhWqfRy8px7oeIssq6O/cPm/TjTL7wNbrqyymnLjdn2NDvaaG5BMIhirekBltRceX3NmQCGBOLHDDum7N79B/rhJk97BBCstzveOYmIGtTDwnS0ub81bxPKz6aDjFELHgEli1Wdjro41Hd3NuFLjuRwuaCMHylWyzMejNhb/UcnoP/Mq9KiYAgDOUS/l/YyIvBpUI7MBAIAiEhDRiqKJexCRusAb9UBeh73iESQF3hkp0RgLb9J/PAmUgHqhTOgUDrm3ETiSDrW/npixsGTIWuvVrPYtZgUpbmXA5jQ="
+  
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+
+addons:
+  sonarqube:
+    organization: "symphonyoss"
+    token:
+      secure: "$SONAR_LOGIN"
