@@ -242,6 +242,11 @@ under the License.
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.10.4</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
           <version>3.4</version>
         </plugin>
@@ -328,6 +333,11 @@ under the License.
           <artifactId>versioneye-maven-plugin</artifactId>
           <version>3.9.2</version>
         </plugin>
+        <plugin>
+          <groupId>org.whitesource</groupId>
+          <artifactId>whitesource-maven-plugin</artifactId>
+          <version>3.2.6</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -391,7 +401,6 @@ under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.4</version>
         <configuration>
           <failOnError>false</failOnError>
         </configuration>
@@ -513,5 +522,32 @@ under the License.
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <id>whitesource</id>
+      <properties>
+        <whitesource.org.token>${env.WHITESOURCE_TOKEN}</whitesource.org.token>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.whitesource</groupId>
+            <artifactId>whitesource-maven-plugin</artifactId>
+            <configuration>
+              <orgToken>${whitesource.org.token}</orgToken>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>update</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
   </profiles>
 </project>
