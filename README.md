@@ -1,4 +1,4 @@
-[![Maven Central](https://img.shields.io/maven-central/v/org.symphonyoss/symphonyoss.svg?maxAge=2592000)](http://search.maven.org/#artifactdetails%7Corg.symphonyoss%7Csymphonyoss%7C2%7Cpom)
+[![Maven Central](https://img.shields.io/maven-central/v/org.symphonyoss/symphonyoss.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22symphonyoss%22)
 [![Dependencies](https://www.versioneye.com/user/projects/5770ea4001f8e1000998d503/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5770ea4001f8e1000998d503)
 [![Build Status](https://travis-ci.org/symphonyoss/ssf-parent-pom.svg)](https://travis-ci.org/symphonyoss/ssf-parent-pom)
 
