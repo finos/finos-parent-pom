@@ -132,6 +132,7 @@ under the License.
     <gpg.useagent>true</gpg.useagent>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <github.global.server>github</github.global.server>
   </properties>
 
@@ -168,6 +169,7 @@ under the License.
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.5.1</version>
           <configuration>
+            <showWarnings>${maven.compiler.showWarnings}</showWarnings>
   					<source>${maven.compiler.source}</source>
   					<target>${maven.compiler.target}</target>
   				</configuration>
