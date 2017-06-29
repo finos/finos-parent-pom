@@ -508,6 +508,7 @@ under the License.
       <id>versioneye</id>
       <properties>
         <versioneye.trackPlugins>false</versioneye.trackPlugins>
+        <versioneye.skipScopes>test,provided</versioneye.skipScopes>
       </properties>
       <build>
         <plugins>
@@ -516,6 +517,7 @@ under the License.
               <artifactId>versioneye-maven-plugin</artifactId>
               <configuration>
                 <trackPlugins>${versioneye.trackPlugins}</trackPlugins>
+                <skipScopes>${versioneye.skipScopes}</skipScopes>
               </configuration>
               <executions>
                 <execution>
