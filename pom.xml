@@ -532,5 +532,31 @@ under the License.
         </plugins>
       </build>
     </profile>
+
+   <profile>    
+      <id>whitesource</id>    
+      <properties>    
+        <whitesource.org.token>${env.WHITESOURCE_TOKEN}</whitesource.org.token>   
+      </properties>   
+      <build>   
+        <plugins>   
+          <plugin>    
+            <groupId>org.whitesource</groupId>    
+            <artifactId>whitesource-maven-plugin</artifactId>   
+            <configuration>   
+              <orgToken>${whitesource.org.token}</orgToken>   
+            </configuration>    
+            <executions>    
+              <execution>   
+                <phase>package</phase>    
+                <goals>   
+                  <goal>update</goal>   
+                </goals>    
+              </execution>    
+            </executions>   
+          </plugin>   
+        </plugins>    
+      </build>    
+    </profile>
   </profiles>
 </project>
