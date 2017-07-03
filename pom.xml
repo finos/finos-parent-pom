@@ -165,15 +165,37 @@ under the License.
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+	<plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>cobertura-maven-plugin</artifactId>
+	    <version>2.7</version>
+	    <configuration>
+		<formats>
+		    <format>html</format>
+		</formats>
+		<check>
+		    <totalLineRate>90</totalLineRate>
+		</check>
+	    </configuration>
+	    <executions>
+		<execution>
+		    <phase>package</phase>
+		    <goals>
+			<goal>cobertura</goal>
+			<goal>check</goal>
+		    </goals>
+	        </execution>
+	    </executions>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.5.1</version>
           <configuration>
             <showWarnings>${maven.compiler.showWarnings}</showWarnings>
-  					<source>${maven.compiler.source}</source>
-  					<target>${maven.compiler.target}</target>
-  				</configuration>
+	    <source>${maven.compiler.source}</source>
+	    <target>${maven.compiler.target}</target>
+ 	  </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -192,6 +214,11 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-docck-plugin</artifactId>
           <version>1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>3.0.4</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -247,6 +274,11 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.10.4</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>3.8</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -416,12 +448,10 @@ under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.8</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.4</version>
       </plugin>
     </plugins>
   </reporting>
@@ -533,6 +563,7 @@ under the License.
               <groupId>com.versioneye</groupId>
               <artifactId>versioneye-maven-plugin</artifactId>
               <configuration>
+		<transitiveDependencies>true</transitiveDependencies>
                 <trackPlugins>${versioneye.trackPlugins}</trackPlugins>
                 <skipScopes>${versioneye.skipScopes}</skipScopes>
               </configuration>
