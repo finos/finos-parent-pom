@@ -533,6 +533,7 @@ under the License.
               <groupId>com.versioneye</groupId>
               <artifactId>versioneye-maven-plugin</artifactId>
               <configuration>
+		<transitiveDependencies>true</transitiveDependencies>
                 <trackPlugins>${versioneye.trackPlugins}</trackPlugins>
                 <skipScopes>${versioneye.skipScopes}</skipScopes>
               </configuration>
