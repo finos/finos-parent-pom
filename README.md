@@ -16,6 +16,8 @@ This Maven POM aims to provide **_common functionalities to Maven projects_** ho
   * [Travis CI Integration](#travis-ci-integration)
   * [scan\.coverity\.com Integration](#scancoveritycom-integration)
     * [Enable Coverity Scan integration](#enable-coverity-scan-integration)
+  * [Whitesource integration](#whitesource-integration)
+    * [Enable Whitesource](#enable-whitesource)
 * [Workstation setup](#workstation-setup)
   * [Travis](#travis)
   * [Maven deploy/release](#maven-deployrelease)
@@ -100,6 +102,21 @@ The Foundation Parent Pom doesn't have (yet) any dependency or integration with 
 1. Sign in [Coverity Scan](https://scan.coverity.com/dashboard) using Github
 2. [Add a project](https://scan.coverity.com/projects)
 3. Define a `COVERITY_SCAN_TOKEN=coverity_project_token`; you can find the token in the Coverity `Project Settings` page; as above, make sure to encrypt the variable if you're using Travis CI: `travis encrypt COVERITY_SCAN_TOKEN=coverity_project_token`
+
+### Whitesource integration
+[WhiteSource](https://www.whitesourcesoftware.com/) automatically identiﬁes all the open source components and dependencies in your build by constant and automatic cross-referencing of your open source components against WhiteSource’s deﬁnitive database of open source repositories.
+
+Whitesource provides a dedicated instance to validate and enforce quality, security and legal compliance for all Symphony Software Foundation hosted projects.
+
+#### Enable Whitesource
+
+In order to access the Whitesource dashboard and configure your build to submit metrics remotely, you first need to be invited - via email - by the Foundation Staff; open an INFRA issue with title "Request access to WhiteSource", where you specify the email address you'd like to use to login.
+
+When logged in, you'll have access to the product and project dashboards, that can be used to check and tweak alerts.
+
+In Maven, you can configure the following Whitesource parameters:
+- `-Dwhitesource.org.token` - specifies the Whitesource API Key to use, which represents the Whitesource Foundation account; Foundation Staff can configure this field on Travis CI or any other CI environment, but cannot redistribute the key in clear test. If present, the value will be taken from `WHITESOURCE_TOKEN` environment variable
+- `-Dwhitesource.product` - specifies the Whitesource product that contains the currently built project (or repository, in Github terms); default value is `${project.artifactId}`
 
 ## Workstation setup
 
