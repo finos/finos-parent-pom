@@ -9,6 +9,7 @@ This Maven POM aims to provide **_common functionalities to Maven projects_** ho
 * [Features](#features)
   * [Plugin Management](#plugin-management)
   * [Enforcing rules](#enforcing-rules)
+  * [Attach sources](#attach-sources)
   * [versioneye\.com Integration](#versioneyecom-integration)
     * [Enable Versioneye integration](#enable-versioneye-integration)
   * [sonarqube\.com Integration](#sonarqubecom-integration)
@@ -41,6 +42,7 @@ Simply define the following `<parent>` in your `pom.xml`:
 - **Simple artifact deployment and release** on Maven Central and Github (`releases` project page)
 - **Site (documentation) generation** on Github Wiki (WIP)
 - **Enforcing rules** to validate the Foundation code acceptance criteria
+- **Attaching sources** to generate and upload artifacts containing current project's source code
 - **versioneye.com integration** for security and licensing validation
 - **sonarqube.com integration** for code analytics
 - **Travis CI** integration for Continuous Integration
@@ -65,6 +67,11 @@ The current rules currently defined are:
 2. Define a groupId that starts with `org.symphonyoss` or `org.symphonyoss.`
 
 The Foundation rules are implemented as Maven Enforcer custom rules and the [source code is available on GitHub](https://github.com/symphonyoss/ssf-enforcer-rules); more rules will be added in the future.
+
+### Attach sources
+By enabling the `-Pattach-sources` profile, the `maven-source-plugin` gets invoked and a `JAR` artifact containing the project's source code is created.
+
+When enabled, the `maven-install-plugin`, `maven-deploy-plugin` and `maven-release-plugin` will take the source code JAR file in consideration and including in the respective plugin lifecycles.
 
 ### versioneye.com Integration
 [versioneye.com](http://versioneye.com) notifies you about out-dated dependencies, security vulnerabilities and license violations in your Git repositories.
