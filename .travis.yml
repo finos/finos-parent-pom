@@ -23,7 +23,8 @@
 language: java
 
 script: 
-  - "if [[ $TRAVIS_BRANCH =~ master && \"$TRAVIS_PULL_REQUEST\" = \"false\" ]]; then mvn clean deploy -Pversioneye,sonar --settings settings.xml ; else mvn clean install ; fi"
+  # - "if [[ $TRAVIS_BRANCH =~ master && \"$TRAVIS_PULL_REQUEST\" = \"false\" ]]; then mvn clean deploy -Pversioneye,sonar --settings settings.xml ; else mvn clean install ; fi"
+  - "if [[ $TRAVIS_BRANCH =~ master && \"$TRAVIS_PULL_REQUEST\" = \"false\" ]]; then mvn clean deploy -Psonar --settings settings.xml ; else mvn clean install ; fi"
 
 jdk:
   - oraclejdk8
