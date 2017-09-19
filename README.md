@@ -82,6 +82,12 @@ This Parent Pom uses and configures the [Versioneye Maven Plugin](https://github
 1. Define a `VERSIONEYE_API_KEY=my_versioneye_api_key`; you can find the API Key in your [versioneye settings](https://www.versioneye.com/settings/api); if you use Travis CI, make sure you encrypt it using `travis encrypt VERSIONEYE_API_KEY=my_versioneye_api_key` and then pushing the `secure` token in your `.travis.yml` (check this [.travis.yml](.travis.yml) as example)
 2. Add `versioneye` profile to your Maven command: `mvn clean verify -Pversioneye`; please note that the Maven will run versioneye during the `verify` phase (that is after package), therefore `mvn clean package -Pversioneye` won't work!
 
+#### Additional configuration
+You can tweak the following properties:
+- `versioneye.trackPlugins` : whether to track Maven plugin, defaults to `false`
+- `versioneye.skipScopes` : comma-separated list of Maven dependency scopes that must be ignored by versioneye; defaults to `test,provided`
+- `versioneye.propertiesPath` : located `versioneye.properties` file and defaults to `./src/main/resources/versioneye.properties`
+
 ### sonarqube.com Integration
 The [SonarQube®](https://sonarqube.com/) platform is an open source quality management platform, dedicated to continuously analyzing and measuring the technical quality of source code, from project portfolio down to the method level, and tracking the introduction of new Bugs, Vulnerabilities, and Code Smells in the Leak Period.
 

@@ -366,7 +366,7 @@ under the License.
         <plugin>
           <groupId>com.versioneye</groupId>
           <artifactId>versioneye-maven-plugin</artifactId>
-          <version>3.9.2</version>
+          <version>3.11.4</version>
         </plugin>
         <plugin>
           <groupId>org.whitesource</groupId>
@@ -564,6 +564,7 @@ under the License.
       <properties>
         <versioneye.trackPlugins>false</versioneye.trackPlugins>
         <versioneye.skipScopes>test,provided</versioneye.skipScopes>
+        <versioneye.propertiesPath>${basedir}/src/main/resources/versioneye.properties</versioneye.propertiesPath>
       </properties>
       <build>
         <plugins>
@@ -571,9 +572,10 @@ under the License.
               <groupId>com.versioneye</groupId>
               <artifactId>versioneye-maven-plugin</artifactId>
               <configuration>
-		<transitiveDependencies>true</transitiveDependencies>
+                <transitiveDependencies>true</transitiveDependencies>
                 <trackPlugins>${versioneye.trackPlugins}</trackPlugins>
                 <skipScopes>${versioneye.skipScopes}</skipScopes>
+                <propertiesPath>${versioneye.propertiesPath}</propertiesPath>
               </configuration>
               <executions>
                 <execution>
