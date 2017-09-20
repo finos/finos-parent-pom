@@ -33,8 +33,22 @@ Simply define the following `<parent>` in your `pom.xml`:
 <parent>
   <groupId>org.symphonyoss</groupId>
   <artifactId>symphonyoss</artifactId>
-  <version>2</version>
+  <version>8</version>
 </parent>
+```
+
+If you want to use a SNAPSHOT version (ie `8-SNAPSHOT`), make sure to add the following repository in your `pom.xml`.
+
+```
+<repositories>
+  <repository>
+    <id>sonatype-oss-public</id>
+    <url>https://oss.sonatype.org/content/groups/public/</url>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+  </repository>
+</repositories>
 ```
 
 ## Features
