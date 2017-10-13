@@ -596,6 +596,8 @@ under the License.
       <properties>
         <whitesource.org.token>${env.WHITESOURCE_TOKEN}</whitesource.org.token>
         <whitesource.product>${project.artifactId}</whitesource.product>
+        <whitesource.checkPolicies>true</whitesource.checkPolicies>
+        <whitesource.failOnError>true</whitesource.failOnError>
       </properties>
       <build>
         <plugins>
@@ -605,6 +607,8 @@ under the License.
             <configuration>
               <orgToken>${whitesource.org.token}</orgToken>
               <product>${whitesource.product}</product>
+              <checkPolicies>${whitesource.checkPolicies}</checkPolicies>
+              <failOnError>${whitesource.failOnError}</failOnError>
             </configuration>
             <executions>
               <execution>

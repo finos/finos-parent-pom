@@ -144,6 +144,8 @@ When logged in, you'll have access to the product and project dashboards, that c
 In Maven, you can configure the following Whitesource parameters:
 - `-Dwhitesource.org.token` - specifies the Whitesource API Key to use, which represents the Whitesource Foundation account; Foundation Staff can configure this field on Travis CI or any other CI environment, but cannot redistribute the key in clear test. If present, the value will be taken from `WHITESOURCE_TOKEN` environment variable
 - `-Dwhitesource.product` - specifies the Whitesource product that contains the currently built project (or repository, in Github terms); default value is `${project.artifactId}`
+- `-Dwhitesource.checkPolicies` - whether to check the current build against WhiteSource policies; default value is `true`
+- `-Dwhitesource.failOnError` - whether to trigger a `BUILD ERROR` if any policy violation is found; default value is `true`
 
 ## Workstation setup
 
