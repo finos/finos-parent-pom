@@ -598,6 +598,7 @@ under the License.
         <whitesource.product>${project.artifactId}</whitesource.product>
         <whitesource.checkPolicies>true</whitesource.checkPolicies>
         <whitesource.failOnError>true</whitesource.failOnError>
+        <whitesource.forceUpdate>true</whitesource.forceUpdate>
       </properties>
       <build>
         <plugins>
@@ -609,6 +610,7 @@ under the License.
               <product>${whitesource.product}</product>
               <checkPolicies>${whitesource.checkPolicies}</checkPolicies>
               <failOnError>${whitesource.failOnError}</failOnError>
+              <forceUpdate>${whitesource.forceUpdate}</forceUpdate>
             </configuration>
             <executions>
               <execution>
