@@ -181,10 +181,17 @@ mvn site -Ppublish-site
 
 ### Release Deployment
 ```
-mvn clean release:prepare release:perform -Dgpg.passphrase=your_passphrase
+export GPG_TTY=$(tty)
+mvn clean release:prepare release:perform -Prelease
 ```
+
 This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day; the goals invoked during the `release:perform` phase are defined by `<release.goals>` property and is set by default to `deploy`.
 
-`your_passphrase` is the passphrase of your GPG key; please refer to `gpg2` to check your keys;  simply type `gpg2 -q --sign` to validate your passphrase
+During the build, the GPG plugin will request for your key passphrase; please refer to [`gpg2`](https://linux.die.net/man/1/gpg2) to check your keys and test your passphrase using `gpg2 -q --sign`.
 
-Please note that all the Maven logic related with a release is wrapped into a `release` profile, which is used by the `maven-release-plugin` when using `release:perform` goal.
+Please note that all the Maven logic related with a release is wrapped into a `release` profile, which is used by the `maven-release-plugin` when using `release:perform` goal, using the [`releaseProfiles` property](http://maven.apache.org/maven-release/maven-release-plugin/perform-mojo.html#releaseProfiles).
+
+#### Known issues
+If the release command fails with `gpg: signing failed: Inappropriate ioctl for device`, run `export GPG_TTY=$(tty)` and try again; more info [on stackexchange](http://unix.stackexchange.com/a/257065).
+
+export GPG_TTY=$(tty)
