@@ -34,7 +34,7 @@ Simply define the following `<parent>` in your `pom.xml`:
 </parent>
 ```
 
-If you want to use a SNAPSHOT version (ie `8-SNAPSHOT`), make sure to add the following repository in your `pom.xml`.
+If you want to use a SNAPSHOT version (ie `1-SNAPSHOT`), make sure to add the following repository in your `pom.xml`.
 
 ```
 <repositories>
