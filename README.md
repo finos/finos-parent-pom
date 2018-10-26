@@ -1,17 +1,14 @@
-[![Maven Central](https://img.shields.io/maven-central/v/org.symphonyoss/symphonyoss.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22symphonyoss%22)
-[![Dependencies](https://www.versioneye.com/user/projects/5770ea4001f8e1000998d503/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5770ea4001f8e1000998d503)
-[![Build Status](https://travis-ci.org/symphonyoss/ssf-parent-pom.svg)](https://travis-ci.org/symphonyoss/ssf-parent-pom)
+[![Maven Central](https://img.shields.io/maven-central/v/org.finos/finos.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22finos%22)
+[![Build Status](https://travis-ci.org/finos-fdx/finos-parent-pom.svg)](https://travis-ci.org/finos-fdx/finos-parent-pom)
 
-# Symphony Software Foundation Parent POM
-This Maven POM aims to provide **_common functionalities to Maven projects_** hosted by the Symphony Software Foundation.
+# FINOS Parent POM
+This Maven POM aims to provide **_common functionalities to Maven projects_** hosted by FINOS, the Fintech Open Source Foundation.
 
 * [Usage](#usage)
 * [Features](#features)
   * [Plugin Management](#plugin-management)
   * [Enforcing rules](#enforcing-rules)
   * [Attach sources](#attach-sources)
-  * [versioneye\.com Integration](#versioneyecom-integration)
-    * [Enable Versioneye integration](#enable-versioneye-integration)
   * [sonarqube\.com Integration](#sonarqubecom-integration)
     * [Enable SonarQube integration](#enable-sonarqube-integration)
   * [Travis CI Integration](#travis-ci-integration)
@@ -31,9 +28,9 @@ This Maven POM aims to provide **_common functionalities to Maven projects_** ho
 Simply define the following `<parent>` in your `pom.xml`:
 ```
 <parent>
-  <groupId>org.symphonyoss</groupId>
-  <artifactId>symphonyoss</artifactId>
-  <version>8</version>
+  <groupId>org.finos</groupId>
+  <artifactId>finos</artifactId>
+  <version>1</version>
 </parent>
 ```
 
@@ -70,31 +67,22 @@ If you want to use a SNAPSHOT version (ie `8-SNAPSHOT`), make sure to add the fo
 <maven.compiler.target>1.7</maven.compiler.target>
 ```
 - `maven-javadoc-plugin` generates Javadoc JAR (which gets deployed and released along with other artifacts) during each JAR project build
-- `maven-remote-resources-plugin` includes the contents of [ssf-jar-resource-bundle](https://github.com/symphonyoss/ssf-jar-resource-bundle) (mostly licensing-related files) in each artifact that gets built
+- `maven-remote-resources-plugin` includes the contents of [finos-jar-resource-bundle](https://github.com/finos-fdx/finos-jar-resource-bundle) (mostly licensing-related files) in each artifact that gets built.
 - `maven-source-plugin` generates a JAR with the source code (which gets deployed and released along with other artifacts) during each JAR project build
 - `nexus-staging-maven-plugin` enables the deployment and release process against [Sonatype OSS Repository](https://oss.sonatype.org) (which is synced with Maven Central)
 
-### Enforcing rules
+### Enforcing rules (currently disabled)
 The current rules currently defined are:
 
 1. Use Maven 3.0 or greater
-2. Define a groupId that starts with `org.symphonyoss` or `org.symphonyoss.`
+2. Define a groupId that starts with `org.finos` or `org.finos.`
 
-The Foundation rules are implemented as Maven Enforcer custom rules and the [source code is available on GitHub](https://github.com/symphonyoss/ssf-enforcer-rules); more rules will be added in the future.
+The Foundation rules are implemented as Maven Enforcer custom rules and the [source code is available on GitHub](https://github.com/finos/finos-enforcer-rules).
 
 ### Attach sources
 By enabling the `-Pattach-sources` profile, the `maven-source-plugin` gets invoked and a `JAR` artifact containing the project's source code is created.
 
 When enabled, the `maven-install-plugin`, `maven-deploy-plugin` and `maven-release-plugin` will take the source code JAR file in consideration and including in the respective plugin lifecycles.
-
-### versioneye.com Integration
-[versioneye.com](http://versioneye.com) notifies you about out-dated dependencies, security vulnerabilities and license violations in your Git repositories.
-
-This Parent Pom uses and configures the [Versioneye Maven Plugin](https://github.com/versioneye/versioneye_maven_plugin) to register and submit data to versioneye.
-
-#### Enable Versioneye integration
-1. Define a `VERSIONEYE_API_KEY=my_versioneye_api_key`; you can find the API Key in your [versioneye settings](https://www.versioneye.com/settings/api); if you use Travis CI, make sure you encrypt it using `travis encrypt VERSIONEYE_API_KEY=my_versioneye_api_key` and then pushing the `secure` token in your `.travis.yml` (check this [.travis.yml](.travis.yml) as example)
-2. Add `versioneye` profile to your Maven command: `mvn clean verify -Pversioneye`; please note that the Maven will run versioneye during the `verify` phase (that is after package), therefore `mvn clean package -Pversioneye` won't work!
 
 #### Additional configuration
 You can tweak the following properties:
@@ -108,7 +96,8 @@ The [SonarQube®](https://sonarqube.com/) platform is an open source quality man
 This Parent Pom uses and configures the [Sonar Maven Plugin](http://sonarsource.github.io/sonar-maven/) to submit data to SonarQube.
 
 #### Enable SonarQube integration
-1. Request an invitation (send email to `nemo AT sonarsource.com`) to Sonarqube.com for the project, mentioning that the project belongs to the Symphony Software Foundation
+**TODO! update docs to SonarCloud**
+1. Request an invitation (send email to `nemo AT sonarsource.com`) to Sonarqube.com for the project, mentioning that the project belongs to FINOS
 2. Define a `SONAR_TOKEN=my_sonarqube_token`; you can find the token in your [Sonar security settings](https://sonarqube.com/account/security); as above, make sure to encrypt the variable if you're using Travis CI: `travis encrypt SONAR_TOKEN=my_sonar_token`
 3. Add `sonar` profile to your Maven command: `mvn clean package -Psonar`; the Sonar Plugin will run right after the `package` Maven phase is invoked
 
@@ -133,7 +122,7 @@ The Foundation Parent Pom doesn't have (yet) any dependency or integration with 
 ### Whitesource integration
 [WhiteSource](https://www.whitesourcesoftware.com/) automatically identiﬁes all the open source components and dependencies in your build by constant and automatic cross-referencing of your open source components against WhiteSource’s deﬁnitive database of open source repositories.
 
-Whitesource provides a dedicated instance to validate and enforce quality, security and legal compliance for all Symphony Software Foundation hosted projects.
+Whitesource provides a dedicated instance to validate and enforce quality, security and legal compliance for all FINOS hosted projects.
 
 #### Enable Whitesource
 
@@ -155,11 +144,11 @@ To launch the `travis` command locally, you must install the gem first: `gem ins
 
 ### Maven deploy/release
 
-In order to publish (Symphony Foundation) artifacts, it is necessary to [sign in Sonatype OSS](https://issues.sonatype.org/secure/Signup!default.jspa) and [configure your workstation](http://central.sonatype.org/pages/apache-maven.html#distribution-management-and-authentication) (only the settings.xml part); we strongly advise to [encrypt your Maven passwords](https://maven.apache.org/guides/mini/guide-encryption.html).
+In order to publish (FINOS) artifacts, it is necessary to [sign in Sonatype OSS](https://issues.sonatype.org/secure/Signup!default.jspa) and [configure your workstation](http://central.sonatype.org/pages/apache-maven.html#distribution-management-and-authentication) (only the settings.xml part); we strongly advise to [encrypt your Maven passwords](https://maven.apache.org/guides/mini/guide-encryption.html).
 
 You also need to install [GnuPG](https://www.gnupg.org); on OSX it is available on Homebrew with `brew install gnupg gnupg2`, although some issues were encountered using the GPG Maven Plugin. You can run `gpg2 -q --sign` to check your installation and validate your passphrase.
 
-Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.symphonyoss` groupId.
+Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.finos` groupId.
 
 ### Github plugins configuration
 To enable documentation publishing into github pages, you must enable the profile `-Ppublish-site`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins); bare in mind that `<github.global.server>github</github.global.server>` is already defined in this Parent Pom, but you can override it in your own pom, if you like
@@ -172,7 +161,7 @@ Simply run
 ```
 mvn clean deploy
 ```
-This command will deploy the artifacts on [Sonatype OSS Snapshot Repository](https://oss.sonatype.org/content/repositories/snapshots/org/symphonyoss/)
+This command will deploy the artifacts on [Sonatype OSS Snapshot Repository](https://oss.sonatype.org/content/repositories/snapshots/org/finos/)
 
 If you want to deploy site documentation, you can run
 ```
