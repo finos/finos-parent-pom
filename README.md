@@ -1,6 +1,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.finos/finos.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22finos%22)
 [![Build Status](https://travis-ci.org/finos-fdx/finos-parent-pom.svg)](https://travis-ci.org/finos-fdx/finos-parent-pom)
 
+
 # FINOS Parent POM
 This Maven POM aims to provide **_common functionalities to Maven projects_** hosted by FINOS, the Fintech Open Source Foundation.
 
