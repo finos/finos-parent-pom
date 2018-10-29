@@ -26,5 +26,4 @@ script:
   - "if [[ $TRAVIS_BRANCH =~ master && \"$TRAVIS_PULL_REQUEST\" = \"false\" ]]; then mvn clean deploy -Psonar --settings settings.xml ; else mvn clean install ; fi"
 
 jdk:
-  - oraclejdk9
-  
+  - oraclejdk11
