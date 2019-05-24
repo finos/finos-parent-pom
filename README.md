@@ -181,7 +181,22 @@ During the build, the GPG plugin will request for your key passphrase; please re
 
 Please note that all the Maven logic related with a release is wrapped into a `release` profile, which is used by the `maven-release-plugin` when using `release:perform` goal, using the [`releaseProfiles` property](http://maven.apache.org/maven-release/maven-release-plugin/perform-mojo.html#releaseProfiles).
 
+## Contributing
+
+1. Fork it (<https://github.com/finos-fdx/finos-parent-pom/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Read our [contribution guidelines](.github/CONTRIBUTING.md) and [Community Code of Conduct](https://www.finos.org/code-of-conduct)
+4. Commit your changes (`git commit -am 'Add some fooBar'`)
+5. Push to the branch (`git push origin feature/fooBar`)
+6. Create a new Pull Request
+
 #### Known issues
 If the release command fails with `gpg: signing failed: Inappropriate ioctl for device`, run `export GPG_TTY=$(tty)` and try again; more info [on stackexchange](http://unix.stackexchange.com/a/257065).
 
 export GPG_TTY=$(tty)
+
+## License
+
+The code in this repository is distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+Copyright 2018-2019 FINOS - The Fintech Open Source Foundation
