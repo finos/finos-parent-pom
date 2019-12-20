@@ -1,6 +1,9 @@
+| NOTE! This project is not active anymore, therefore marked as ARCHIVED; if you're interested to become the maintener of this project, open an issue or email help@finos.org .|
+| --- |
+
 [![Maven Central](https://img.shields.io/maven-central/v/org.finos/finos.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22finos%22)
 [![Build Status](https://travis-ci.org/finos-fdx/finos-parent-pom.svg)](https://travis-ci.org/finos-fdx/finos-parent-pom)
-
+[![FINOS - Archived](https://cdn.jsdelivr.net/gh/finos/contrib-toolbox@master/images/badge-archived.svg)](https://finosfoundation.atlassian.net/wiki/display/FINOS/Archived)
 
 # FINOS Parent POM
 This Maven POM aims to provide **_common functionalities to Maven projects_** hosted by FINOS, the Fintech Open Source Foundation.
