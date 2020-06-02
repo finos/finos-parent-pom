@@ -45,7 +45,7 @@ jobs:
     - name: Build + Test + Sonar
       if: github.ref == 'refs/heads/dev'
       run: mvn install -Psonar
-    - name: Build + Test + Sonar + Maven/Docker Deploy
+    - name: Build + Test + Sonar + Maven Deploy
       if: github.ref == 'refs/heads/master'
       run: mvn deploy -Psonar
   
