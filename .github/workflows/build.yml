@@ -42,7 +42,7 @@ jobs:
     - name: Build + Test
       if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/master'
       run: mvn install
-      - name: Build + Test + Sonar
+    - name: Build + Test + Sonar
       if: github.ref == 'refs/heads/dev'
       run: mvn install -Psonar
     - name: Build + Test + Sonar + Maven/Docker Deploy
