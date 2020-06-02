@@ -8,8 +8,6 @@ env:
 
 on:
   push:
-    branches:
-      - build
     paths:
       - '.github/workflows/build.yml'
       - 'pom.xml'
