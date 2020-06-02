@@ -1,0 +1,53 @@
+name: finos-parent-pom-build
+
+env:
+  CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+  CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+on:
+  push:
+    branches:
+      - build
+    paths:
+      - '.github/workflows/build.yml'
+      - 'pom.xml'
+  pull_request:
+    paths:
+      - '.github/workflows/build.yml'
+      - 'pom.xml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Install Node
+      uses: actions/setup-node@v1
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 13
+        server-id: ossrh
+        server-username: CI_DEPLOY_USERNAME
+        server-password: CI_DEPLOY_PASSWORD
+    - name: Configure git
+      run: |
+        git config --global committer.email "infra@finos.org"
+        git config --global committer.name "FINOS Admin"
+        git config --global author.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global author.name "${GITHUB_ACTOR}"
+    - name: Download deps and plugins
+      run: mvn de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
+    - name: Build + Test
+      if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/master'
+      run: mvn install
+      - name: Build + Test + Sonar
+      if: github.ref == 'refs/heads/dev'
+      run: mvn install -Psonar
+    - name: Build + Test + Sonar + Maven/Docker Deploy
+      if: github.ref == 'refs/heads/master'
+      run: mvn deploy -Psonar
+  
