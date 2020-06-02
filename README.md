@@ -1,6 +1,3 @@
-| NOTE! This project is not active anymore, therefore marked as ARCHIVED; if you're interested to become the maintener of this project, open an issue or email help@finos.org .|
-| --- |
-
 [![Maven Central](https://img.shields.io/maven-central/v/org.finos/finos.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22finos%22)
 [![Build Status](https://travis-ci.org/finos-fdx/finos-parent-pom.svg)](https://travis-ci.org/finos-fdx/finos-parent-pom)
 [![FINOS - Archived](https://cdn.jsdelivr.net/gh/finos/contrib-toolbox@master/images/badge-archived.svg)](https://finosfoundation.atlassian.net/wiki/display/FINOS/Archived)
@@ -27,6 +24,7 @@ This Maven POM aims to provide **_common functionalities to Maven projects_** ho
 * [Artifact Deployment](#artifact-deployment)
   * [Snapshot Deployment](#snapshot-deployment)
   * [Release Deployment](#release-deployment)
+* [Docker integration](#docker-integration)
 
 ## Usage
 Simply define the following `<parent>` in your `pom.xml`:
@@ -201,6 +199,24 @@ _NOTE:_ Commits and pull requests to FINOS repositories will only be accepted fr
 If the release command fails with `gpg: signing failed: Inappropriate ioctl for device`, run `export GPG_TTY=$(tty)` and try again; more info [on stackexchange](http://unix.stackexchange.com/a/257065).
 
 export GPG_TTY=$(tty)
+
+## Docker integration
+Run `mvn install -Pdocker` to build a Docker image; you'll need to add a `Dockerfile` in the Maven module root folder, below an example:
+```
+FROM openjdk:13
+MAINTAINER Maurizio Pillitu <maoo@finos.org>
+
+ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/myservice/myservice.jar"]
+
+# Add Maven dependencies (not shaded into the artifact; Docker-cached)
+ADD target/lib           /usr/share/myservice/lib
+
+# Add the service itself
+ARG JAR_FILE
+ADD target/${JAR_FILE} /usr/share/myservice/myservice.jar
+```
+
+To push the image to `hub.docker.com/u/finos`, run `mvn deploy -Pdocker`; you must have `DOCKER_USERNAME` and `DOCKER_PASSWORD` environment variables set.
 
 ## License
 
