@@ -218,6 +218,8 @@ ADD target/${JAR_FILE} /usr/share/myservice/myservice.jar
 
 To push the image to `hub.docker.com/u/finos`, run `mvn deploy -Pdocker`; you must have `DOCKER_USERNAME` and `DOCKER_PASSWORD` environment variables set.
 
+In order to disable the plugin on the parent POM, [check this GitHub Issue](https://github.com/spotify/dockerfile-maven/issues/87#issuecomment-338288165).
+
 ## License
 
 The code in this repository is distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
