@@ -78,7 +78,7 @@ under the License.
     <pluginRepository>
       <id>ossrh</id>
       <name>OSSRH Public Group</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -89,7 +89,7 @@ under the License.
     <repository>
       <id>ossrh</id>
       <name>OSSRH Public Group</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -116,9 +116,9 @@ under the License.
 
   <properties>
     <distMgmtReleaseName>FINOS Release Distribution Repository</distMgmtReleaseName>
-    <distMgmtReleaseUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
+    <distMgmtReleaseUrl>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
     <distMgmtSnapshotsName>FINOS Development Snapshot Repository</distMgmtSnapshotsName>
-    <distMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</distMgmtSnapshotsUrl>
+    <distMgmtSnapshotsUrl>https://s01.oss.sonatype.org/content/repositories/snapshots/</distMgmtSnapshotsUrl>
     <release.goals>deploy</release.goals>
     <organization.logo>https://www.finos.org/hs-fs/hubfs/sofin%20assets/SOFIN%20LOGOS/FINOS_Icon_Wordmark_White.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
