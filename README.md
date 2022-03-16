@@ -42,7 +42,7 @@ If you want to use a SNAPSHOT version (ie `1-SNAPSHOT`), make sure to add the fo
 <repositories>
   <repository>
     <id>sonatype-oss-public</id>
-    <url>https://oss.sonatype.org/content/groups/public/</url>
+    <url>https://s01.oss.sonatype.org/content/groups/public/</url>
     <snapshots>
         <enabled>true</enabled>
     </snapshots>
@@ -71,7 +71,7 @@ If you want to use a SNAPSHOT version (ie `1-SNAPSHOT`), make sure to add the fo
 - `maven-javadoc-plugin` generates Javadoc JAR (which gets deployed and released along with other artifacts) during each JAR project build
 - `maven-remote-resources-plugin` includes the contents of [finos-jar-resource-bundle](https://github.com/finos-fdx/finos-jar-resource-bundle) (mostly licensing-related files) in each artifact that gets built.
 - `maven-source-plugin` generates a JAR with the source code (which gets deployed and released along with other artifacts) during each JAR project build
-- `nexus-staging-maven-plugin` enables the deployment and release process against [Sonatype OSS Repository](https://oss.sonatype.org) (which is synced with Maven Central)
+- `nexus-staging-maven-plugin` enables the deployment and release process against [Sonatype OSS Repository](https://s01.oss.sonatype.org) (which is synced with Maven Central)
 
 ### Enforcing rules (currently disabled)
 The current rules currently defined are:
@@ -150,7 +150,7 @@ In order to publish (FINOS) artifacts, it is necessary to [sign in Sonatype OSS]
 
 You also need to install [GnuPG](https://www.gnupg.org); on OSX it is available on Homebrew with `brew install gnupg gnupg2`, although some issues were encountered using the GPG Maven Plugin. You can run `gpg2 -q --sign` to check your installation and validate your passphrase.
 
-Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.finos` groupId.
+Before proceeding, please open a `TASK` issue on our INFRA Jira project, attaching the project name (github url) and your username on https://s01.oss.sonatype.org; we will ask Sonatype - on your behalf - to grant you access to publish artifacts using `org.finos` groupId.
 
 ### Github plugins configuration
 To enable documentation publishing into github pages, you must enable the profile `-Ppublish-site`; to setup github credentials on your local workstation, follow the [Maven github plugins configuration](https://github.com/github/maven-plugins); bare in mind that `<github.global.server>github</github.global.server>` is already defined in this Parent Pom, but you can override it in your own pom, if you like
@@ -163,7 +163,7 @@ Simply run
 ```
 mvn clean deploy
 ```
-This command will deploy the artifacts on [Sonatype OSS Snapshot Repository](https://oss.sonatype.org/content/repositories/snapshots/org/finos/)
+This command will deploy the artifacts on [Sonatype OSS Snapshot Repository](https://s01.oss.sonatype.org/content/repositories/snapshots/org/finos/)
 
 If you want to deploy site documentation, you can run
 ```
