@@ -27,8 +27,8 @@ under the License.
   <packaging>pom</packaging>
 
   <name>The FINOS Parent POM</name>
-  <description>Delivers code automation for projects hosted by the FINOS that build with Apache Maven</description>
-  <url>https://finos.org</url>
+  <description>Parent POM for FINOS hosted project that deliver release, deployment automation and more</description>
+  <url>https://github.com/finos/finos-parent-pom</url>
   <organization>
     <name>FINOS</name>
     <url>https://finos.org</url>
@@ -38,7 +38,7 @@ under the License.
     <developer>
         <id>maoo</id>
         <name>Maurizio Pillitu</name>
-        <email>maoo@finos.org</email>
+        <email>infra@finos.org</email>
         <url>http://github.com/maoo</url>
         <organization>FINOS</organization>
         <organizationUrl>https://finos.org</organizationUrl>
@@ -57,20 +57,10 @@ under the License.
     </license>
   </licenses>
 
-  <mailingLists>
-    <mailingList>
-      <name>FDX General List</name>
-      <subscribe>finos-fdx@finos.org</subscribe>
-      <unsubscribe>finos-fdx+unsubscribe@finos.org</unsubscribe>
-      <post>finos-fdx@finos.org</post>
-      <archive>https://groups.google.com/a/finos.org/forum/#!forum/finos-fdx</archive>
-    </mailingList>
-  </mailingLists>
-
   <scm>
-    <connection>scm:git:git://github.com/finos-fdx/finos-parent-pom.git</connection>
-    <developerConnection>scm:git:git@github.com:finos-fdx/finos-parent-pom.git</developerConnection>
-    <url>https://github.com/finos-fdx/finos-parent-pom</url>
+    <connection>scm:git:git://github.com/finos/finos-parent-pom.git</connection>
+    <developerConnection>scm:git:git@github.com:finos/finos-parent-pom.git</developerConnection>
+    <url>https://github.com/finos/finos-parent-pom</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -78,7 +68,7 @@ under the License.
     <pluginRepository>
       <id>ossrh</id>
       <name>OSSRH Public Group</name>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+      <url>https://${repoServerHost}/content/repositories/snapshots/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -89,7 +79,7 @@ under the License.
     <repository>
       <id>ossrh</id>
       <name>OSSRH Public Group</name>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+      <url>https://${repoServerHost}/content/repositories/snapshots/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -115,10 +105,11 @@ under the License.
 	</issueManagement>
 
   <properties>
+    <repoServerHost>s01.oss.sonatype.org</repoServerHost>
     <distMgmtReleaseName>FINOS Release Distribution Repository</distMgmtReleaseName>
-    <distMgmtReleaseUrl>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
+    <distMgmtReleaseUrl>https://${repoServerHost}/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
     <distMgmtSnapshotsName>FINOS Development Snapshot Repository</distMgmtSnapshotsName>
-    <distMgmtSnapshotsUrl>https://s01.oss.sonatype.org/content/repositories/snapshots/</distMgmtSnapshotsUrl>
+    <distMgmtSnapshotsUrl>https://${repoServerHost}/content/repositories/snapshots/</distMgmtSnapshotsUrl>
     <release.goals>deploy</release.goals>
     <organization.logo>https://www.finos.org/hs-fs/hubfs/sofin%20assets/SOFIN%20LOGOS/FINOS_Icon_Wordmark_White.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -223,16 +214,7 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>1.4.1</version>
-<!-- TODO - enable when finos-enforcer-rules is released -->
-<!--
-          <dependencies>
-            <dependency>
-              <groupId>org.finos</groupId>
-              <artifactId>finos-enforcer-rules</artifactId>
-              <version>0.9.0</version>
-            </dependency>
-          </dependencies>
- -->        </plugin>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
@@ -306,14 +288,6 @@ under the License.
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-remote-resources-plugin</artifactId>
           <version>1.5</version>
-<!-- TODO - enable when finos-jar-resource-bundle is released -->
-<!--
-          <configuration>
-            <resourceBundles>
-              <resourceBundle>org.finos:finos-jar-resource-bundle:1</resourceBundle>
-            </resourceBundles>
-          </configuration>
- -->
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -375,21 +349,6 @@ under the License.
       </plugins>
     </pluginManagement>
     <plugins>
-<!-- TODO - enable when finos-jar-resource-bundle is released -->
-<!--
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-remote-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>process-resource-bundles</id>
-            <goals>
-              <goal>process</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
--->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -398,17 +357,6 @@ under the License.
             <requireMavenVersion>
               <version>3.0.5</version>
             </requireMavenVersion>
-<!-- TODO - enable when finos-enforcer-rules is released -->
-<!--
-            <myCustomRule implementation="org.finos.maven.enforcer.RequireGroupIdRule">
-              <groupIdPrefix>org.finos</groupIdPrefix>
-            </myCustomRule>
-            <myCustomRule implementation="org.finos.maven.enforcer.RequireFileInArtifactRule">
-              <fileName>NOTICE</fileName>
-              <match>FINOS (https://finos.org)</match>
-            </myCustomRule>
-            <myCustomRule implementation="org.finos.maven.enforcer.RequirePomMetadataRule" />
--->
           </rules>
         </configuration>
         <executions>
