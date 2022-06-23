@@ -200,6 +200,8 @@ If the release command fails with `gpg: signing failed: Inappropriate ioctl for 
 
 export GPG_TTY=$(tty)
 
+If this doesn't solve it, you can `brew install pinentry-mac` and add `pinentry-program /usr/local/bin/pinentry-mac` to your `~/.gnupg/gpg-agent.conf`.
+
 ## Docker integration
 Run `mvn install -Pdocker` to build a Docker image; you'll need to add a `Dockerfile` in the Maven module root folder, below an example:
 ```
