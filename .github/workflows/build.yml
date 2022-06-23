@@ -47,4 +47,4 @@ jobs:
       run: mvn install -Psonar
     - name: Build + Test + Sonar + Maven Deploy
       if: github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
-      run: mvn deploy -Psonar
+      run: mvn deploy -Psonar -DrepoServerHost=oss.sonatype.org
