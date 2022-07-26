@@ -32,7 +32,7 @@ Simply define the following `<parent>` in your `pom.xml`:
 <parent>
   <groupId>org.finos</groupId>
   <artifactId>finos</artifactId>
-  <version>1</version>
+  <version>4</version>
 </parent>
 ```
 
