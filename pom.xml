@@ -344,7 +344,7 @@ under the License.
         <plugin>
           <groupId>org.whitesource</groupId>
           <artifactId>whitesource-maven-plugin</artifactId>
-          <version>3.2.6</version>
+          <version>3.3.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
