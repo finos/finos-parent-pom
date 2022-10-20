@@ -23,7 +23,7 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
     - name: Install Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
     - name: Set up JDK
       uses: actions/setup-java@v1
       with:
