@@ -1,4 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.finos/finos.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22finos%22)
+[![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
 ![Build](https://github.com/finos/finos-parent-pom/workflows/finos-parent-pom-build/badge.svg)
 [![FINOS - Incubating](https://cdn.jsdelivr.net/gh/finos/contrib-toolbox@master/images/badge-incubating.svg)](https://finosfoundation.atlassian.net/wiki/display/FINOS/Incubating)
 
