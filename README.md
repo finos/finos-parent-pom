@@ -174,7 +174,7 @@ mvn site -Ppublish-site
 ### Release Deployment
 ```
 export GPG_TTY=$(tty)
-mvn clean release:prepare release:perform -Prelease
+mvn clean release:prepare release:perform -Prelease,parent-pom-release
 ```
 
 This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day; the goals invoked during the `release:perform` phase are defined by `<release.goals>` property and is set by default to `deploy`.
@@ -202,6 +202,8 @@ If the release command fails with `gpg: signing failed: Inappropriate ioctl for 
 export GPG_TTY=$(tty)
 
 If this doesn't solve it, you can `brew install pinentry-mac` and add `pinentry-program /usr/local/bin/pinentry-mac` to your `~/.gnupg/gpg-agent.conf`.
+
+**Important!** - Do not use maven-release-plugin 3.0.0-M7, as it introduces an issue with GPG signing, see https://github.com/apache/maven-release/pull/125#issuecomment-1302613138
 
 ## Docker integration
 Run `mvn install -Pdocker` to build a Docker image; you'll need to add a `Dockerfile` in the Maven module root folder, below an example:
