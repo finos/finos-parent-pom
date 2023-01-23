@@ -114,7 +114,7 @@ under the License.
     <organization.logo>https://www.finos.org/hs-fs/hubfs/sofin%20assets/SOFIN%20LOGOS/FINOS_Icon_Wordmark_White.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <gpg.useagent>true</gpg.useagent>
+    <!-- <gpg.useagent>true</gpg.useagent> -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
