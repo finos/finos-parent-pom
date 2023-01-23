@@ -276,7 +276,8 @@ under the License.
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>3.0.0-M7</version>
+          <!-- 3.0.0-M7 breaks release, see https://github.com/apache/maven-release/pull/125#issuecomment-1302613138 -->
+          <version>3.0.0-M5</version>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
