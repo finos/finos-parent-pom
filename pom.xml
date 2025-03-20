@@ -419,12 +419,13 @@ under the License.
       </build>
     </profile>
 
-    <profile>
+    <!-- Using s01 for parent pom releases too -->
+    <!-- <profile>
       <id>parent-pom-release</id>
       <properties>
         <repoServerHost>oss.sonatype.org</repoServerHost>
       </properties>
-    </profile>
+    </profile> -->
 
     <profile>
       <id>release</id>
