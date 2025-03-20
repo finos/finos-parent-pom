@@ -105,6 +105,7 @@ under the License.
   </issueManagement>
 
   <properties>
+    <gpg.executable>gpg</gpg.executable>
     <repoServerHost>s01.oss.sonatype.org</repoServerHost>
     <distMgmtReleaseName>FINOS Release Distribution Repository</distMgmtReleaseName>
     <distMgmtReleaseUrl>https://${repoServerHost}/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
