@@ -23,7 +23,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.finos</groupId>
   <artifactId>finos</artifactId>
-  <version>6-SNAPSHOT</version>
+  <version>6</version>
   <packaging>pom</packaging>
 
   <name>The FINOS Parent POM</name>
@@ -61,7 +61,7 @@ under the License.
     <connection>scm:git:git://github.com/finos/finos-parent-pom.git</connection>
     <developerConnection>scm:git:git@github.com:finos/finos-parent-pom.git</developerConnection>
     <url>https://github.com/finos/finos-parent-pom</url>
-    <tag>HEAD</tag>
+    <tag>finos-6</tag>
   </scm>
 
   <pluginRepositories>
