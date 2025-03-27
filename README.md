@@ -171,10 +171,17 @@ If you want to deploy site documentation, you can run
 mvn site -Ppublish-site
 ```
 
-### Release Deployment
+### Releasing finos-parent-pom
+
+## Prerequisites
+
+Install GPG and generate a key pair following https://central.sonatype.org/publish/requirements/gpg/; store the passphrase, as you'll need it for the release, then export the private key using `gpg --armor --export-secret-key "User Name" | pbcopy`.
+
+Note that the email address used in the key needs to have permission to publish under groupID org.finos. Email help@finos.org for support.
+
 ```
 export GPG_TTY=$(tty)
-mvn clean release:prepare release:perform -Prelease,parent-pom-release
+mvn clean release:prepare release:perform -P release -Dsonar.projectKey=finos_<your-project-name>
 ```
 
 This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day; the goals invoked during the `release:perform` phase are defined by `<release.goals>` property and is set by default to `deploy`.

@@ -3,6 +3,7 @@ name: finos-parent-pom-build
 env:
   CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
   CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+  CI_GPG_PASSPHRASE: ${{ secrets.CI_GPG_PASSPHRASE }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -21,17 +22,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - name: Install Node
-      uses: actions/setup-node@v4
+      uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
+    # Not sure why this is here
+    # - name: Install Node
+    #   uses: actions/setup-node@v3
+
+    - name: Cache Maven dependencies
+      uses: actions/cache@v4
+      env:
+        cache-name: cache-mvn-deps
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('pom.xml') }}
+
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-        java-version: 17
+        java-version: 21
+        java-package: jdk
         distribution: temurin
         server-id: ossrh
         server-username: CI_DEPLOY_USERNAME
         server-password: CI_DEPLOY_PASSWORD
+        gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
+        gpg-passphrase: CI_GPG_PASSPHRASE
     - name: Configure git
       run: |
         git config --global committer.email "infra@finos.org"
@@ -48,4 +62,12 @@ jobs:
       run: mvn install -Psonar
     - name: Build + Test + Sonar + Maven Deploy
       if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
-      run: mvn deploy -Psonar -DrepoServerHost=oss.sonatype.org
+      run: mvn deploy -Psonar -Dsonar.projectKey=finos_finos-parent-pom
+
+    # - name: Prepare release
+    #   if: github.ref == 'refs/heads/main'
+    #   run: mvn -B -DpreparationGoals=clean release:prepare -Prelease -DinteractiveMode=false
+
+    # - name: Perform release
+    #   if: github.ref == 'refs/heads/main'
+    #   run: mvn -B release:perform -Prelease -DinteractiveMode=false
