@@ -64,10 +64,10 @@ jobs:
       if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
       run: mvn deploy -Psonar -Dsonar.projectKey=finos_finos-parent-pom
 
-    - name: Prepare release
-      if: github.ref == 'refs/heads/main'
-      run: mvn -B -DpreparationGoals=clean release:prepare -Prelease -DinteractiveMode=false
+    # - name: Prepare release
+    #   if: github.ref == 'refs/heads/main'
+    #   run: mvn -B -DpreparationGoals=clean release:prepare -Prelease -DinteractiveMode=false
 
-    - name: Perform release
-      if: github.ref == 'refs/heads/main'
-      run: mvn -B release:perform -Prelease -DinteractiveMode=false
+    # - name: Perform release
+    #   if: github.ref == 'refs/heads/main'
+    #   run: mvn -B release:perform -Prelease -DinteractiveMode=false
