@@ -3,6 +3,7 @@ name: finos-parent-pom-build
 env:
   CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
   CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+  CI_GPG_PASSPHRASE: ${{ secrets.CI_GPG_PASSPHRASE }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -27,11 +28,14 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: 17
+        java-version: 21
+        java-package: jdk
         distribution: temurin
         server-id: ossrh
         server-username: CI_DEPLOY_USERNAME
         server-password: CI_DEPLOY_PASSWORD
+        gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
+        gpg-passphrase: CI_GPG_PASSPHRASE
     - name: Configure git
       run: |
         git config --global committer.email "infra@finos.org"
@@ -49,3 +53,9 @@ jobs:
     - name: Build + Test + Sonar + Maven Deploy
       if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
       run: mvn deploy -Psonar -DrepoServerHost=oss.sonatype.org
+
+    - name: Prepare release
+      run: mvn -B -DpreparationGoals=clean release:prepare -Prelease -DinteractiveMode=false
+
+    - name: Perform release
+      run: mvn -B release:perform -Prelease -DinteractiveMode=false
