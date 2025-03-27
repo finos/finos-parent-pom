@@ -58,7 +58,7 @@ under the License.
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/finos/finos-parent-pom.git</connection>
+    <connection>scm:git:git:@github.com/finos/finos-parent-pom.git</connection>
     <developerConnection>scm:git:git@github.com:finos/finos-parent-pom.git</developerConnection>
     <url>https://github.com/finos/finos-parent-pom</url>
     <tag>HEAD</tag>
