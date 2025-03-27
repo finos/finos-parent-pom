@@ -181,7 +181,7 @@ Note that the email address used in the key needs to have permission to publish 
 
 ```
 export GPG_TTY=$(tty)
-mvn clean release:prepare release:perform -P release
+mvn clean release:prepare release:perform -P release -Dsonar.projectKey=finos_<your-project-name>
 ```
 
 This command will deploy the artifacts on Sonatype OSS Staging Repository and - by default - promote the artifacts to [Maven Central](http://search.maven.org); synchronisation happens once every day; the goals invoked during the `release:perform` phase are defined by `<release.goals>` property and is set by default to `deploy`.
