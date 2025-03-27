@@ -33,6 +33,11 @@ jobs:
         cache-name: cache-mvn-deps
       with:
         path: ~/.m2/repository
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
 
     - name: Set up JDK
       uses: actions/setup-java@v4
