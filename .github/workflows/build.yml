@@ -11,6 +11,24 @@ on:
   workflow_dispatch:
 
 jobs:
+  generate-release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate release notes
+        id: release_notes
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter.yml
+
+      - name: Upload release notes as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: RELEASE_NOTES.md
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -43,20 +61,25 @@ jobs:
         server-password: CI_DEPLOY_PASSWORD
         gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
         gpg-passphrase: CI_GPG_PASSPHRASE
+
     - name: Configure git
       run: |
         git config --global committer.email "infra@finos.org"
         git config --global committer.name "FINOS Admin"
         git config --global author.email "${GITHUB_ACTOR}@users.noreply.github.com"
         git config --global author.name "${GITHUB_ACTOR}"
+
     - name: Download deps and plugins
       run: mvn de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
+
     - name: Build + Test
       if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main'
       run: mvn install
+
     - name: Build + Test + Sonar
       if: github.ref == 'refs/heads/dev'
       run: mvn install -Psonar
+
     - name: Build + Test + Sonar + Maven Deploy
       if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
       run: mvn deploy -Psonar -Dsonar.projectKey=finos_finos-parent-pom
