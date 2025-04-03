@@ -75,17 +75,6 @@ under the License.
     </pluginRepository>
   </pluginRepositories>
 
-  <repositories>
-    <repository>
-      <id>ossrh</id>
-      <name>OSSRH Public Group</name>
-      <url>https://${repoServerHost}/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
   <distributionManagement>
     <repository>
       <id>ossrh-distro</id>
