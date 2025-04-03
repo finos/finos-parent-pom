@@ -75,30 +75,6 @@ under the License.
     </pluginRepository>
   </pluginRepositories>
 
-  <repositories>
-    <repository>
-      <id>ossrh</id>
-      <name>OSSRH Public Group</name>
-      <url>https://${repoServerHost}/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <distributionManagement>
-    <repository>
-      <id>ossrh-distro</id>
-      <name>${distMgmtReleaseName}</name>
-      <url>${distMgmtReleaseUrl}</url>
-    </repository>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <name>${distMgmtSnapshotsName}</name>
-      <url>${distMgmtSnapshotsUrl}</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <issueManagement>
     <url>https://github.com/finos-fdx/finos-parent-pom/issues</url>
     <system>GitHub Issues</system>
