@@ -8,14 +8,7 @@ env:
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 on:
-  push:
-    paths:
-      - '.github/workflows/build.yml'
-      - 'pom.xml'
-  pull_request:
-    paths:
-      - '.github/workflows/build.yml'
-      - 'pom.xml'
+  workflow_dispatch:
 
 jobs:
   build:
