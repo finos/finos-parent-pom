@@ -11,24 +11,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-release-notes:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Generate release notes
-        id: release_notes
-        uses: release-drafter/release-drafter@v5
-        with:
-          config-name: release-drafter.yml
-
-      - name: Upload release notes as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-notes
-          path: RELEASE_NOTES.md
-
   build:
     runs-on: ubuntu-latest
     steps:
