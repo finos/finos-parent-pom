@@ -15,10 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    # Not sure why this is here
-    # - name: Install Node
-    #   uses: actions/setup-node@v3
+      uses: actions/checkout@v4
 
     - name: Cache Maven dependencies
       uses: actions/cache@v4
@@ -32,12 +29,12 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
 
-    - name: Set up JDK
+    - name: Set up JDK and GPG
       uses: actions/setup-java@v4
       with:
         java-version: 21
-        java-package: jdk
         distribution: temurin
+        java-package: jdk
         server-id: ossrh
         server-username: CI_DEPLOY_USERNAME
         server-password: CI_DEPLOY_PASSWORD
@@ -51,6 +48,21 @@ jobs:
         git config --global author.email "${GITHUB_ACTOR}@users.noreply.github.com"
         git config --global author.name "${GITHUB_ACTOR}"
 
+    - name: Generate Maven settings.xml (redundancy to ensure presence)
+      run: |
+        mkdir -p ~/.m2
+        cat > ~/.m2/settings.xml <<EOF
+        <settings>
+          <servers>
+            <server>
+              <id>ossrh</id>
+              <username>${{ secrets.CI_DEPLOY_USERNAME }}</username>
+              <password>${{ secrets.CI_DEPLOY_PASSWORD }}</password>
+            </server>
+          </servers>
+        </settings>
+        EOF
+
     - name: Download deps and plugins
       run: mvn de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
 
@@ -63,8 +75,16 @@ jobs:
       run: mvn install -Psonar
 
     - name: Build + Test + Sonar + Maven Deploy
-      if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
+      if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[maven-release-plugin]')
       run: mvn deploy -Psonar -Dsonar.projectKey=finos_finos-parent-pom
+
+    - name: Diagnostic check before release
+      if: github.ref == 'refs/heads/main'
+      run: |
+        echo "Checking ~/.m2/settings.xml:"
+        cat ~/.m2/settings.xml || echo "No settings.xml found"
+        echo "Checking GPG keys:"
+        gpg --list-keys || echo "No GPG keys found"
 
     - name: Prepare release
       if: github.ref == 'refs/heads/main'
