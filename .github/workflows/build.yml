@@ -48,21 +48,6 @@ jobs:
         git config --global author.email "${GITHUB_ACTOR}@users.noreply.github.com"
         git config --global author.name "${GITHUB_ACTOR}"
 
-    - name: Generate Maven settings.xml (redundancy to ensure presence)
-      run: |
-        mkdir -p ~/.m2
-        cat > ~/.m2/settings.xml <<EOF
-        <settings>
-          <servers>
-            <server>
-              <id>ossrh</id>
-              <username>${{ secrets.CI_DEPLOY_USERNAME }}</username>
-              <password>${{ secrets.CI_DEPLOY_PASSWORD }}</password>
-            </server>
-          </servers>
-        </settings>
-        EOF
-
     - name: Download deps and plugins
       run: mvn de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
 
