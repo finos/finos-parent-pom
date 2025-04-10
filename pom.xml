@@ -77,7 +77,7 @@ under the License.
 
   <distributionManagement>
     <repository>
-      <id>ossrh-distro</id>
+      <id>ossrh</id>
       <name>${distMgmtReleaseName}</name>
       <url>${distMgmtReleaseUrl}</url>
     </repository>
