@@ -71,6 +71,7 @@ under the License.
 
   <properties>
     <gpg.executable>gpg</gpg.executable>
+    <publish.server.id>ossrh</publish.server.id>
     <release.goals>org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish</release.goals>
     <organization.logo>https://www.finos.org/hs-fs/hubfs/sofin%20assets/SOFIN%20LOGOS/FINOS_Icon_Wordmark_White.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -252,7 +253,7 @@ under the License.
           <version>0.7.0</version>
           <extensions>true</extensions>
           <configuration>
-            <publishingServerId>central</publishingServerId>
+            <publishingServerId>${publish.server.id}</publishingServerId>
             <autoPublish>true</autoPublish>
           </configuration>
         </plugin>
