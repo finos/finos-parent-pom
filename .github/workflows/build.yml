@@ -22,14 +22,11 @@ jobs:
 
     - name: Cache Maven dependencies
       uses: actions/cache@v4
-      env:
-        cache-name: cache-mvn-deps
       with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
+        path: ${{ env.HOME }}/.m2/repository
+        key: ${{ runner.os }}-build-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
+          ${{ runner.os }}-build-maven-
           ${{ runner.os }}-
 
     - name: Set up JDK
@@ -62,13 +59,9 @@ jobs:
       if: github.ref == 'refs/heads/dev'
       run: mvn install -Psonar
 
-    - name: Build + Test + Sonar + Maven Deploy
-      if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
-      run: mvn install org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish -Psonar -Dsonar.projectKey=finos_finos-parent-pom
-
     - name: Prepare release
       if: github.ref == 'refs/heads/main'
-      run: mvn -B -DpreparationGoals=clean release:prepare -Prelease -DinteractiveMode=false
+      run: mvn -B -DpreparationGoals=clean release:prepare -Psonar -Prelease -DinteractiveMode=false
 
     - name: Perform release
       if: github.ref == 'refs/heads/main'
