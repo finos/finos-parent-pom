@@ -76,7 +76,6 @@ under the License.
     <organization.logo>https://www.finos.org/hs-fs/hubfs/sofin%20assets/SOFIN%20LOGOS/FINOS_Icon_Wordmark_White.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <!-- <gpg.useagent>true</gpg.useagent> -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
@@ -238,7 +237,6 @@ under the License.
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <!-- 3.0.0-M7 breaks release, see https://github.com/apache/maven-release/pull/125#issuecomment-1302613138 -->
           <version>3.1.1</version>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -389,14 +387,6 @@ under the License.
         </plugins>
       </build>
     </profile>
-
-    <!-- Using s01 for parent pom releases too -->
-    <!-- <profile>
-      <id>parent-pom-release</id>
-      <properties>
-        <repoServerHost>oss.sonatype.org</repoServerHost>
-      </properties>
-    </profile> -->
 
     <profile>
       <id>release</id>
