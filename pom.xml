@@ -64,30 +64,6 @@ under the License.
     <tag>HEAD</tag>
   </scm>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>ossrh</id>
-      <name>OSSRH Public Group</name>
-      <url>https://${repoServerHost}/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <distributionManagement>
-    <repository>
-      <id>ossrh</id>
-      <name>${distMgmtReleaseName}</name>
-      <url>${distMgmtReleaseUrl}</url>
-    </repository>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <name>${distMgmtSnapshotsName}</name>
-      <url>${distMgmtSnapshotsUrl}</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <issueManagement>
     <url>https://github.com/finos-fdx/finos-parent-pom/issues</url>
     <system>GitHub Issues</system>
@@ -95,12 +71,7 @@ under the License.
 
   <properties>
     <gpg.executable>gpg</gpg.executable>
-    <repoServerHost>s01.oss.sonatype.org</repoServerHost>
-    <distMgmtReleaseName>FINOS Release Distribution Repository</distMgmtReleaseName>
-    <distMgmtReleaseUrl>https://${repoServerHost}/service/local/staging/deploy/maven2/</distMgmtReleaseUrl>
-    <distMgmtSnapshotsName>FINOS Development Snapshot Repository</distMgmtSnapshotsName>
-    <distMgmtSnapshotsUrl>https://${repoServerHost}/content/repositories/snapshots/</distMgmtSnapshotsUrl>
-    <release.goals>deploy</release.goals>
+    <release.goals>org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish</release.goals>
     <organization.logo>https://www.finos.org/hs-fs/hubfs/sofin%20assets/SOFIN%20LOGOS/FINOS_Icon_Wordmark_White.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -273,6 +244,16 @@ under the License.
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
             <goals>${release.goals}</goals>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.7.0</version>
+          <extensions>true</extensions>
+          <configuration>
+            <publishingServerId>central</publishingServerId>
+            <autoPublish>true</autoPublish>
           </configuration>
         </plugin>
         <plugin>
