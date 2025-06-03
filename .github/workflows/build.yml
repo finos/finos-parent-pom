@@ -62,9 +62,10 @@ jobs:
       if: github.ref == 'refs/heads/dev'
       run: mvn install -Psonar
 
-    - name: Build + Test + Sonar + Maven Deploy
-      if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
-      run: mvn deploy -Psonar -Dsonar.projectKey=finos_finos-parent-pom
+    # TOD - Not sure how to deploy snapshots after switching to central-publishing-maven-plugin
+    # - name: Build + Test + Sonar + Maven Deploy
+    #   if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message,'[maven-release-plugin]')
+    #   run: mvn deploy -Psonar -Dsonar.projectKey=finos_finos-parent-pom
 
     - name: Prepare release
       if: github.ref == 'refs/heads/main'
