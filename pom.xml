@@ -23,7 +23,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.finos</groupId>
   <artifactId>finos</artifactId>
-  <version>8-SNAPSHOT</version>
+  <version>7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>The FINOS Parent POM</name>
@@ -72,7 +72,7 @@ under the License.
   <properties>
     <gpg.executable>gpg</gpg.executable>
     <publish.server.id>ossrh</publish.server.id>
-    <release.goals>org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish</release.goals>
+    <release.goals>install org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish</release.goals>
     <organization.logo>https://www.finos.org/hs-fs/hubfs/sofin%20assets/SOFIN%20LOGOS/FINOS_Icon_Wordmark_White.png</organization.logo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -232,7 +232,6 @@ under the License.
           <version>3.1.1</version>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
             <goals>${release.goals}</goals>
           </configuration>
