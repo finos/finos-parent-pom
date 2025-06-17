@@ -415,7 +415,7 @@ under the License.
             <artifactId>maven-source-plugin</artifactId>
             <executions>
               <execution>
-                <id>attach-sources</id>
+                <id>release-attach-sources</id>
                 <goals>
                   <goal>jar-no-fork</goal>
                 </goals>
