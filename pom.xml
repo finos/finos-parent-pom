@@ -81,6 +81,7 @@ under the License.
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <github.global.server>github</github.global.server>
     <github.oauth.token>${env.GITHUB_TOKEN}</github.oauth.token>
+    <skip.source.attach>false</skip.source.attach>
   </properties>
 
   <build>
@@ -413,6 +414,9 @@ under the License.
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
+            <configuration>
+              <skipSource>${skip.source.attach}</skipSource>
+            </configuration>
             <executions>
               <execution>
                 <id>attach-sources</id>
