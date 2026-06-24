@@ -10,15 +10,15 @@ env:
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    # Not sure why this is here
-    # - name: Install Node
-    #   uses: actions/setup-node@v3
 
     - name: Cache Maven dependencies
       uses: actions/cache@v4
