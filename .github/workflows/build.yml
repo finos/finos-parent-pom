@@ -61,7 +61,7 @@ jobs:
 
     - name: Prepare release
       if: github.ref == 'refs/heads/main'
-      run: mvn -B -DpreparationGoals=clean release:prepare -Psonar -Prelease -DinteractiveMode=false
+      run: mvn -B -DpreparationGoals=clean release:prepare -Prelease -DinteractiveMode=false
 
     - name: Perform release
       if: github.ref == 'refs/heads/main'
